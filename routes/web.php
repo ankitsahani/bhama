@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,83 +14,89 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::match(['get','post'],'/admin', 'Admin\AdminController@login'); //submit our form for login process
 
-Auth::routes(['register' => false]);
-Route::group(['middleware'=>['loginAuth']],function(){
+Auth::routes();
 
-//route for admin
-Route::match(['get','post'],'/login', 'Admin\AdminController@login')->name('login');
+//Home Page Route
+Route::get('/home', 'HomeController@index');
+
+
+
+
+Route::group(['middleware' => ['auth']],function(){
+Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
+Route::get('/admin/settings', 'Admin\AdminController@settings');
+Route::get('/admin/check-pwd', 'Admin\AdminController@chkpassword');
+
+//forgot password for admin
+Route::match(['get','post'],'forgot-password','Admin\AdminController@forgotPassword');
+
+//Route for users
+Route::get('/admin/view-users','Admin\UsersController@viewUsers');
+Route::get('/admin/delete-users/{id}','Admin\UsersController@deleteUsers');
+
+//Rout for user status
+Route::get('/status/{id}', 'Admin\UsersController@status');
+
+//Route for Banners
+Route::match(['get','post'],'/admin/add-banners','Admin\BannerController@addBannerForm');
+Route::match(['get','post'],'/admin/create-banners','Admin\BannerController@addBanner');
+Route::match(['get','post'],'/admin/view-banners','Admin\BannerController@viewBanner');
+//Route::get('/admin/edit-banners/{id}','BannerController@editBannerForm')
+Route::match(['get','post'],'/admin/edit-banners/{id}','Admin\BannerController@editBanner');
+
+// Categories Routes (Admin)
+Route::match(['get','post'],'/admin/add-category', 'Admin\CategoryController@addCategory');
+Route::match(['get','post'],'/admin/edit-category/{id}','Admin\CategoryController@editCategory');
+Route::match(['get','post'],'/admin/delete-category/{id}','Admin\CategoryController@deleteCategory');
+Route::get('/admin/view-categories', 'Admin\CategoryController@viewCategories');
+// Mega Menues Routes (Admin)
+Route::match(['get','post'],'/admin/add-mega-menu', 'Admin\CategoryController@addMegamenu');
+Route::match(['get','post'],'/admin/edit-mega-menu/{id}','Admin\CategoryController@editMegamenu');
+Route::match(['get','post'],'/admin/delete-mega-menu/{id}','Admin\CategoryController@deleteMegamenu');
+Route::get('/admin/view-mega-menu', 'Admin\CategoryController@viewMegamenu');
+// Home menu Routes (Admin)
+Route::match(['get','post'],'/admin/add-home-menu', 'Admin\HomeMenuController@addHomeMenu');
+Route::match(['get','post'],'/admin/edit-home-menu/{id}','Admin\HomeMenuController@editHomeMenu');
+Route::match(['get','post'],'/admin/delete-home-menu/{id}','Admin\HomeMenuController@deleteHomeMenu');
+Route::get('/admin/view-home-menu', 'Admin\HomeMenuController@viewHomeMenu');
+//Products Routes (Admin)
+Route::match(['get','post'],'/admin/add-product', 'Admin\ProductsController@addProduct');
+Route::match(['get','post'],'/admin/edit-product/{id}', 'Admin\ProductsController@editProduct');
+Route::get('/admin/view-products','Admin\ProductsController@viewProducts');
+Route::get('/admin/delete-product/{id}', 'Admin\ProductsController@deleteProduct');
+Route::get('/admin/delete-product-image/{id}','Admin\ProductsController@deleteProductImage');
+Route::get('/admin/delete-alt-image/{id}','Admin\ProductsController@deleteAltImage');
+
+//products attributes routes (Admin)
+Route::match(['get','post'],'/admin/add-attributes/{id}', 'Admin\ProductsController@addAttributes');
+Route::match(['get','post'],'/admin/edit-attributes/{id}', 'Admin\ProductsController@editAttributes');
+Route::match(['get','post'],'/admin/add-images/{id}', 'Admin\ProductsController@addImages');
+Route::get('/admin/delete-attribute/{id}', 'Admin\ProductsController@deleteAttribute');
+
+//Coupons Route
+Route::match(['get','post'],'/admin/add-coupon','Admin\CouponsController@addCoupon');
+Route::get('/admin/view-coupons', 'Admin\CouponsController@viewCoupons');
+Route::match(['get','post'],'/admin/edit-coupon/{id}','Admin\CouponsController@editCoupon');
+Route::get('/admin/delete-coupon/{id}','Admin\CouponsController@deleteCoupon');
+
+//Admin Orders Route
+Route::get('/admin/view-orders', 'Admin\ProductsController@viewOrders');
+Route::post('/admin/update-order-status','Admin\ProductsController@updateOrderStatus');
+//Admin Order Detail Page
+Route::get('/admin/view-order/{id}', 'Admin\ProductsController@viewOrderDetails');
+
+Route::get('/logout', 'Admin\AdminController@logout');
 });
-Route::group(['middleware'=>['Admin']],function(){
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::match(['get','post'],'/dashboard', 'Admin\AdminController@dashboard')->name('dashboard');
-Route::match(['get','post'],'/logout', 'Admin\AdminController@logout')->name('logout');
-Route::match(['get','post'],'/profile', 'Admin\AdminController@profile')->name('profile');
-Route::match(['get','post'],'/change-password', 'Admin\AdminController@changePassword')->name('change-password');
-Route::match(['get','post'],'/edit-profile/{id}', 'Admin\AdminController@editProfile')->name('edit-profile');
-//route for users management
-Route::match(['get','post'],'/users-list', 'Admin\UserController@usersList')->name('users-list');
-Route::match(['get','post'],'/add-users', 'Admin\UserController@addUsers')->name('add-users');
-Route::match(['get','post'],'/view-users/{id}', 'Admin\UserController@viewUsers')->name('view-users');
-Route::match(['get','post'],'/edit-users/{id}', 'Admin\UserController@editUsers')->name('edit-users');
-Route::match(['get','post'],'/delete-users/{id}', 'Admin\UserController@deleteUsers')->name('delete-users');
-Route::get('export', 'Admin\UserController@export')->name('export');
-//route for subcription management
-Route::get('/subscription-users-list', 'Admin\SubscriptionController@subcriptionUserList')->name('subscription-users-list');
-Route::match(['get','post'],'/edit-subscribe-user/{id}', 'Admin\SubscriptionController@subcribeEditUser')->name('edit-subscribe-user');
-Route::get('/deactivate-subscription/{id}', 'Admin\SubscriptionController@deactivateSubscription')->name('deactivate-subscription');
-Route::get('/subscription-plans-list', 'Admin\SubscriptionController@subcriptionPlanList')->name('subscription-plans-list');
-Route::match(['get','post'],'/add-subscription-plan', 'Admin\SubscriptionController@addSubscriptionPlan')->name('add-subscription-plan');
-Route::match(['get','post'],'/edit-subscription-plan/{id}', 'Admin\SubscriptionController@editSubscriptionPlan')->name('edit-subscription-plan');
-Route::match(['get','post'],'/delete-subscription-plan/{id}', 'Admin\SubscriptionController@deleteSubscriptionPlan')->name('delete-subscription-plan');
-
-//route for recipe management
-Route::get('/recipe-list', 'Admin\RecipeController@recipeList')->name('recipe-list');
-Route::get('/get-recipe', 'Admin\RecipeController@getRecipe')->name('get-recipe');
-Route::match(['get','post'],'/add-recipe', 'Admin\RecipeController@addRecipesstepOne')->name('add-recipe');
-Route::match(['get','post'],'/add-recipe-next', 'Admin\RecipeController@addRecipesstepTwo')->name('add-recipe-next');
-Route::match(['get','post'],'/edit-recipe/{id}', 'Admin\RecipeController@editRecipestepOne')->name('edit-recipe');
-Route::match(['get','post'],'/edit-recipe-next', 'Admin\RecipeController@editRecipestepTwo')->name('edit-recipe-next');
-Route::match(['get','post'],'/delete-recipe/{id}', 'Admin\RecipeController@deleteRecipes')->name('delete-recipe');
 
 
-//route for food allergy management
-Route::get('/food-allergy-list', 'Admin\FoodAllergyController@foodAllergyList')->name('food-allergy-list');
-Route::match(['get','post'],'/add-allergy', 'Admin\FoodAllergyController@addAllergy')->name('add-allergy');
-Route::match(['get','post'],'/edit-allergy/{id}', 'Admin\FoodAllergyController@editAllergy')->name('edit-allergy');
-Route::match(['get','post'],'/view-allergy/{id}', 'Admin\FoodAllergyController@viewAllergy')->name('view-allergy');
-Route::match(['get','post'],'/delete-allergy/{id}', 'Admin\FoodAllergyController@deleteAllergy')->name('delete-allergy');
+Route::match(['get','post'],'/', 'Website\IndexController@index')->name('index');
 
-//route for earning management
-Route::get('/earning-list', 'Admin\EarningController@earningList')->name('earning-list');
-Route::match(['get','post'],'/delete-earning/{id}', 'Admin\EarningController@delete')->name('delete-earning');
-//route for comment management
-Route::get('/comment-list', 'Admin\CommentController@commentList')->name('comment-list');
-Route::match(['get','post'],'delete-comment/{id}', 'Admin\CommentController@deleteComment')->name('delete-comment');
-Route::get('report-comment/{id}', 'Admin\CommentController@reportComment')->name('report-comment');
 
-//route for faq management
-Route::get('/faq-list', 'Admin\FaqController@faqList')->name('faq-list');
-Route::match(['get','post'],'/add-faq', 'Admin\FaqController@addFaq')->name('add-faq');
-Route::match(['get','post'],'/edit-faq/{id}', 'Admin\FaqController@editFaq')->name('edit-faq');
-Route::match(['get','post'],'/delete-faq/{id}', 'Admin\FaqController@deleteFaq')->name('delete-faq');
+Route::match(['get','post'],'/product-listing', 'Website\IndexController@productListing')->name('product.listing');
+Route::match(['get','post'],'/aboutus', 'Website\StaticController@aboutUs')->name('about.us');
+Route::match(['get','post'],'/contactus', 'Website\StaticController@contactUs')->name('contact.us');
 
-//route for dietry info
-Route::get('/dietary-info-list', 'Admin\DietaryInfoController@dietaryInfoList')->name('dietary-info-list');
-Route::match(['get','post'],'/add-meal', 'Admin\DietaryInfoController@addMeal')->name('add-meal');
-Route::match(['get','post'],'/edit-meal/{id}', 'Admin\DietaryInfoController@editMeal')->name('edit-meal');
-Route::match(['get','post'],'/delete-meal/{id}', 'Admin\DietaryInfoController@deleteMeal')->name('delete-meal');
-Route::match(['get','post'],'/add-volume', 'Admin\DietaryInfoController@addVolume')->name('add-volume');
-Route::match(['get','post'],'/edit-volume/{id}', 'Admin\DietaryInfoController@editVolume')->name('edit-volume');
-Route::match(['get','post'],'/delete-volume/{id}', 'Admin\DietaryInfoController@deleteVolume')->name('delete-volume');
 
-//route for report analytics
-Route::get('/report-list', 'Admin\FaqController@reportAnalyticsList')->name('report-list');
-
-//route for aboutus
-Route::match(['get','post'],'aboutus', 'Admin\FaqController@aboutUs')->name('aboutus');
-Route::match(['get','post'],'notification', 'Admin\FaqController@notification')->name('notification');
-
-});
+Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@productSingle')->name('product.single');

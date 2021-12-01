@@ -1,170 +1,58 @@
-@extends('admin.layouts.master_after_login')
+@extends('layouts.adminLayout.admin_design');
 @section('content')
-<div class="content-wrapper">
-	<div class="heading mt-3 mb-4">
-		<h3 class="text-default weight-700">Dashboard</h3>
-	</div>
-	<div class="row mx-n2">
-			<div class="col-md-3 px-2 stretch-card grid-margin">
-				<div class="card card-img-holder text-default">
-					<div class="card-body d-flex align-items-center justify-content-between px-3">
-						<div class="left">
-							<h6 class="font-weight-normal mb-2">Total Users</h6>
-							<h3 class="mb-0 text-black">{{$totalUsers}}</h3>
-						</div>
-						<div class="right">
-							<img src="assets/images/icons/group.svg">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 px-2 stretch-card grid-margin">
-							<div class="card card-img-holder text-default">
-								<div class="card-body d-flex align-items-center justify-content-between px-3">
-									<div class="left">
-										<h6 class="font-weight-normal mb-2">Total Unsubscribed  Users </h6>
-										<h3 class="mb-0 text-black"></h3>
-									</div>
-									<div class="right">
-										<img src="assets/images/icons/group.svg">
-									</div>
-								</div>
-							</div>
-						</div>
-			<div class="col-md-3 px-2 stretch-card grid-margin">
-				<div class="card card-img-holder text-default">
-					<div class="card-body d-flex align-items-center justify-content-between px-3">
-						<div class="left">
-							<h6 class="font-weight-normal mb-2">Total Recipes</h6>
-							<h3 class="mb-0 text-black"></h3>
-						</div>
-						<div class="right">
-							<img src="{{asset('assets/images/icons/recipe.svg')}}">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 px-2 stretch-card grid-margin">
-				<div class="card card-img-holder text-default">
-					<div class="card-body d-flex align-items-center justify-content-between px-3">
-						<div class="left">
-							<h6 class="font-weight-normal mb-2">Total Subscriptions</h6>
-							<h3 class="mb-0 text-black"></h3>
-						</div>
-						<div class="right">
-							<img src="{{asset('assets/images/icons/rss-social-badge.svg')}}">
-						</div>
-					</div>
-				</div>
-			</div>
-		<!-- <div class="col-md-4 px-2 stretch-card grid-margin">
-			<div class="card card-img-holder text-default text-right">
-				<div class="card-body d-flex align-items-center justify-content-between">
-					<div class="left">
-						<h4 class="font-weight-normal mb-2">Total Users</h4>
-						<h3 class="mb-0">{{$totalUsers}}</h3>
-					</div>
-					<div class="right">
-						<img src="{{asset('assets/images/icons/group.svg')}}">
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- <div class="col-md-4 stretch-card grid-margin">
-			<div class="card card-img-holder text-default text-right">
-				<div class="card-body d-flex align-items-center justify-content-between">
-					<div class="left">
-						<h4 class="font-weight-normal mb-2">Total Recipes</h4>
-						<h3 class="mb-0"></h3>
-					</div>
-					<div class="right">
-						<img src="{{asset('assets/images/icons/recipe.svg')}}">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4 stretch-card grid-margin">
-			<div class="card card-img-holder text-default text-right">
-				<div class="card-body d-flex align-items-center justify-content-between">
-					<div class="left">
-						<h4 class="font-weight-normal mb-2">Total Subscriptions</h4>
-						<h3 class="mb-0"></h3>
-					</div>
-					<div class="right">
-						<img src="{{asset('assets/images/icons/rss-social-badge.svg')}}">
-					</div>
-				</div>
-			</div>
-		</div> -->
-	</div>
-	<!-- <div class="row">
-		<div class="col-md-12 stretch-card grid-margin">
-			<div class="card card-img-holder chart-tabs px-3 py-4">
-				<div class="weight-700 font-20 border-bottom border-dark border-solid pb-3 mb-3 text-default">
-					Earnings
-				</div>
-				<div class="chart mt-2">
-					<ul class="nav nav-pills mb-4">
-						<li class="nav-item">
-							<a class="nav-link active px-4" data-toggle="tab"  href="#"><span class="mx-2">All Time</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-4" data-toggle="tab"  href="#"><span class="mx-2">This year</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-4" data-toggle="tab"  href="#"><span class="mx-2">All week</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link px-4" data-toggle="tab"  href="#"><span class="mx-2">Today</span></a>
-						</li>
-					</ul>
-					<div id="earnings" class="flex-fill" style="height: 250px"></div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<div class="row">
-						<div class="col-md-12 stretch-card grid-margin">
-							<div class="card card-img-holder chart-tabs px-3 py-4">
-								<div class="weight-700 font-20 border-bottom border-dark border-solid pb-3 mb-3 text-default">
-									Earnings
-								</div>
-								<div class="chart mt-2">
-									<ul class="nav nav-pills mb-4">
-										<li class="nav-item">
-											<a class="nav-link active px-4 all"  data-toggle="tab"  href="#tab-1"><span class="mx-2">All Time</span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link px-4 year" data-toggle="tab"  href="#tab-2"><span class="mx-2">This year</span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link px-4 week" data-toggle="tab"  href="#tab-3"><span class="mx-2">This week</span></a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link px-4 today" data-toggle="tab"  href="#tab-4"><span class="mx-2">Today</span></a>
-										</li>
-									</ul>
-									<div class="tab-content">
-										<div class="tab-pane fade show active" id="tab-1">
-											<div id="earnings" class="flex-fill earnings" style="height: 250px"></div>	
-										</div>
-										<div class="tab-pane fade" id="tab-2">
-											<div id="earnings1" class="flex-fill earnings" style="height: 250px"></div>
-										</div>
-										<div class="tab-pane fade" id="tab-3">
-											<div id="earnings2" class="flex-fill earnings" style="height: 250px"></div>
-										</div>
-										<div class="tab-pane fade" id="tab-4">
-											<div id="earnings3" class="flex-fill earnings" style="height: 250px"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<!-- content-wrapper ends -->
+
+<!--main-container-part-->
+<div id="content" style="margin-top:-75px;">
+    <!--breadcrumbs-->
+      <div id="content-header">
+        <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+      </div>
+    <!--End-breadcrumbs-->
+    
+    <!--Action boxes-->
+      <div class="container-fluid">
+        <div class="quick-actions_homepage">
+          <ul class="quick-actions">
+            <li class="bg_lb"> <a href="{{url ('/admin/dashboard')}}"> <i class="icon-dashboard"></i> My Dashboard </a> </li>
+          <li class="bg_lg span3"> <a href="{{url ('/admin/view-categories')}}"> <i class="icon icon-list"></i><span class="label label-important">{{$categoryCount->total()}}</span> Categories</a> </li>
+            <li class="bg_ly"> <a href="{{url ('/admin/view-products')}}"> <i class="icon icon-list"></i><span class="label label-success">{{$productsAll->total()}}</span> Products </a> </li>
+            <li class="bg_lo"> <a href="{{url ('/admin/view-coupons')}}"> <i class="icon icon-list"></i><span class="label label-info">{{$couponCount->total()}}</span> Coupons</a> </li>
+            <li class="bg_ls"> <a href="{{url ('/admin/view-orders')}}"> <i class="icon-fullscreen"></i><span class="label label-warning">{{$orderCount->total()}}</span> Orders</a> </li>
+    
+          </ul>
+        </div>
+    <!--End-Action boxes-->    
+    
+    <!--Chart-box-->    
+        <div class="row-fluid">
+          <div class="widget-box">
+            <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+              <h5>Site Analytics</h5>
+            </div>
+            <div class="widget-content" >
+              <div class="row-fluid">
+                <div class="span12">
+                    <ul class="site-stats">
+
+                    <li class="bg_lh"><i class="icon-user"></i> <strong>{{$userCount->total()}}</strong> <h4>Total Users</h4></li>
+                    <li class="bg_lh"><i class="icon-user"></i> <strong>{{$activeUsers->total()}}</strong> <h4>Active Users</h4></li>
+                        <li class="bg_lh"><i class="icon-user"></i> <strong>{{$inactiveUsers->total()}}</strong> <h4>Inactive Users </h4></li>
+                        <li class="bg_lh"><i class="icon-plus"></i> <strong>{{$productsAll->total()}}</strong> <h4>Total Products </h4></li>
+                        <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>{{$categoryCount->total()}}</h4> <h4>Total Shop</h4></li>
+                        <li class="bg_lh"><i class="icon-tag"></i> <strong>{{$orderCount->total()}}</h4> <h4>Total Orders</h4></li>
+                        <li class="bg_lh"><i class="icon-repeat"></i> <strong>{{$pendingOrders->total()}}</strong> <h4>Total Cart</h4></li>
+                        <li class="bg_lh"><i class="icon-tag"></i> <strong>{{$couponCount->total()}}</strong> <h4>Total Coupon</h4></li>
+                      </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!--End-Chart-box--> 
+        <hr/>
+
+      </div>
+    </div>
+    
+    <!--end-main-container-part-->
 @endsection
