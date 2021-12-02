@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::match(['get','post'],'/admin', 'Admin\AdminController@login'); //submit our form for login process
 
 Auth::routes();
 
 //Home Page Route
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
 
 
 
