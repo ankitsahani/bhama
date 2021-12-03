@@ -32,7 +32,7 @@ class BannerController extends Controller
         $banner->link=$request->link;
             
         if($request->hasfile('image')){
-                echo $image_tmp = Input::file('image');
+                echo $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Pat code
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -84,7 +84,7 @@ class BannerController extends Controller
         $banner->content_type = $data['content_type'];
          $banner->link = $data['link'];
        if($request->hasfile('image')){
-                echo $image_tmp = Input::file('image');
+                echo $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Pat code
                 $extension = $image_tmp->getClientOriginalExtension();

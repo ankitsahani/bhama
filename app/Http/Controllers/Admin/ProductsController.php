@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
 use Image;
@@ -55,7 +54,7 @@ class ProductsController extends Controller
             $product->return_info = $data['return_info'];
             //upload image code
             if($request->hasfile('image')){
-                echo $image_tmp = Input::file('image');
+                echo $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Pat code
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -111,7 +110,7 @@ class ProductsController extends Controller
             //echo "<pre>";print_r($data);die;
             //upload image code
             if($request->hasFile('image')){
-                $image_tmp = Input::file('image');
+                $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Path code
                 $extension = $image_tmp->getClientOriginalExtension();

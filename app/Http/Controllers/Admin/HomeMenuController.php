@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use App\HomeMenu;
 use Session;
 use Image;
@@ -23,7 +22,7 @@ class HomeMenuController extends Controller
            $homemenu->link = $data['link'];
             //upload home_menu image code
             if($request->hasfile('image')){
-                echo $image_tmp = Input::file('image');
+                echo $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Pat code
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -57,7 +56,7 @@ class HomeMenuController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
               if($request->hasFile('image')){
-                $image_tmp = Input::file('image');
+                $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Path code
                 $extension = $image_tmp->getClientOriginalExtension();

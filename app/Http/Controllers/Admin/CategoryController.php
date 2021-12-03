@@ -23,7 +23,7 @@ class CategoryController extends Controller
            $category->url = $data['url'];
             //upload categories image code
             if($request->hasfile('image')){
-                echo $image_tmp = Input::file('image');
+                echo $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Pat code
                 $extension = $image_tmp->getClientOriginalExtension();
@@ -58,7 +58,7 @@ class CategoryController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
               if($request->hasFile('image')){
-                $image_tmp = Input::file('image');
+                $image_tmp = $request->file('image');
                 if($image_tmp->isValid()){
                 //Image File Path code
                 $extension = $image_tmp->getClientOriginalExtension();
