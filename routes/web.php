@@ -61,6 +61,16 @@ Route::match(['get','post'],'/admin/add-home-menu', 'Admin\HomeMenuController@ad
 Route::match(['get','post'],'/admin/edit-home-menu/{id}','Admin\HomeMenuController@editHomeMenu');
 Route::match(['get','post'],'/admin/delete-home-menu/{id}','Admin\HomeMenuController@deleteHomeMenu');
 Route::get('/admin/view-home-menu', 'Admin\HomeMenuController@viewHomeMenu');
+// gallery menu Routes (Admin)
+Route::match(['get','post'],'/admin/add-gallery-menu', 'Admin\GalleryController@addgalleryMenu');
+Route::match(['get','post'],'/admin/edit-gallery-menu/{id}','Admin\GalleryController@editgalleryMenu');
+Route::match(['get','post'],'/admin/delete-gallery-menu/{id}','Admin\GalleryController@deletegalleryMenu');
+Route::get('/admin/view-gallery-menu', 'Admin\GalleryController@viewgalleryMenu');
+// Pramotion menu Routes (Admin)
+Route::match(['get','post'],'/admin/add-promotion-menu', 'Admin\PromotionController@addpromotionMenu');
+Route::match(['get','post'],'/admin/edit-promotion-menu/{id}','Admin\PromotionController@editpromotionMenu');
+Route::match(['get','post'],'/admin/delete-promotion-menu/{id}','Admin\PromotionController@deletepromotionMenu');
+Route::get('/admin/view-promotion-menu', 'Admin\PromotionController@viewpromotionMenu');
 //Products Routes (Admin)
 Route::match(['get','post'],'/admin/add-product', 'Admin\ProductsController@addProduct');
 Route::match(['get','post'],'/admin/edit-product/{id}', 'Admin\ProductsController@editProduct');
