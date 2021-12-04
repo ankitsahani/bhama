@@ -9,6 +9,7 @@
 			<div class="col-md-14 aside">
 				<h1 class="mb-3">My Addresses</h1>
 				<div class="row">
+					@if(count($address) > 0)
                     @foreach($address as $key=>$row)
 					<div class="col-sm-9">
 						<div class="card">
@@ -18,7 +19,7 @@
 									<br>  {{$row->state}} {{$row->city}}
 									<br> {{$row->pincode}}</p>
 								<div class="mt-2 clearfix">
-									<a href="javascript:void(0);" onclick="return updateUserAccount({{$row->id}})" class="link-icn js-show-form" data-form="#updateAddress"><i class="icon-pencil"></i>Edit</a>
+									<a href="javascript:void(0);" class="link-icn js-show-form" data-form="#updateAddress"><i class="icon-pencil"></i>Edit</a>
                                     @csrf
 									<a href="{{url('delete-user-address/'.$row->id)}}" onclick="return confirm('Are you sure you want delete?')"class="link-icn ml-1 float-right"><i class="icon-cross"></i>Delete</a>
 								</div>
@@ -26,6 +27,7 @@
 						</div>
 					</div>
                     @endforeach
+                    @endif
 				</div>
                     
 				<div class="card mt-3 d-none" id="updateAddress">
@@ -78,7 +80,7 @@
 							<div class="col-sm-6">
 								<label class="text-uppercase">zip/postal code:</label>
 								<div class="form-group">
-									<input type="text" value="{{$row->pincode}}"class="form-control">
+									<input type="text" value=""class="form-control">
 								</div>
 							</div>
 						</div>
