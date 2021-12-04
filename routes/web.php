@@ -92,11 +92,14 @@ Route::get('/logout', 'Admin\AdminController@logout');
 
 
 Route::match(['get','post'],'/', 'Website\IndexController@index')->name('index');
-
+Route::match(['get','post'],'/register', 'Website\IndexController@userRegister')->name('user-register');
 
 Route::match(['get','post'],'/product-listing', 'Website\IndexController@productListing')->name('product.listing');
 Route::match(['get','post'],'/aboutus', 'Website\StaticController@aboutUs')->name('about.us');
 Route::match(['get','post'],'/contactus', 'Website\StaticController@contactUs')->name('contact.us');
-
-
 Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@productSingle')->name('product.single');
+
+Route::match(['get','post'],'cart','Website\CartController@cart')->name('cart');
+Route::match(['get','post'],'add-to-cart', 'Website\CartController@addToCart')->name('add.to.cart');
+Route::patch('update-cart', 'Website\CartController@updateCart')->name('update.cart');
+Route::delete('remove-from-cart','Website\CartController@removeCart')->name('remove.from.cart');

@@ -17,6 +17,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Open%20Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
 	<style>
+		.error{
+			color:red;
+		}
 		.footer-top {
 			padding-bottom: 0px;
 		}
@@ -302,6 +305,7 @@
 <script src="{{asset('website_assets/js/vendor-special/jquery.ez-plus.js')}}"></script>
 <script src="{{asset('website_assets/js/vendor/vendor.min.js')}}"></script>
 <script src="{{asset('website_assets/js/app-html.js')}}"></script>
+<script src="{{asset('js/frontend_js/formvalidation.js')}}"></script>
 </body>
 
 <!-- Mirrored from big-skins.com/frontend/bhama-html-demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Oct 2021 20:09:50 GMT -->

@@ -12,7 +12,7 @@ use App\ProductsImage;
 use App\ProductsAttribute;
 use App\Coupon;
 use App\HomeMenu;
-
+use App\User;
 class IndexController extends Controller
 {
     //
@@ -70,6 +70,30 @@ class IndexController extends Controller
     public function mega_menues(){
         $megamenues=MegaMenues::all();
         return view('layouts.header',compact('megamenues'));
+    }
+    public function userRegister(Request $request){
+        if($request->isMethod('post')){
+           
+            $user['name']     =   $request->first_name.' '.$request->last_name;
+            $user['email']   =   $request->email;
+            $user['password'] =   $request->password;
+            User::create($user);
+            return redirect()->back();
+        }
+        return view('website.register');
+    }
+    public function userLogin(){
+        if($request->isMethod('post')){
+            $data = $request->input();
+            if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>1])){
+              //echo "Success"; die;
+             // Session::put('adminSession',$data['email']);
+              return redirect('p');
+            }else{
+              //echo "Failed"; die;
+              return redirect('/admin')->with('flash_message_error','Invalid Username or Password');
+            }
+         }
     }
   
 }

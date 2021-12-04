@@ -95,7 +95,7 @@
 							</div>
 						</div>
 						<div class="order-0 order-md-100">
-							<form method="post" action="#">
+							<form method="post" action="{{ route('add.to.cart', ['id' => $productDetails->id]) }}">
 								<div class="prd-block_options">
 									<div class="prd-color swatches">
 										<div class="option-label">Color:</div>
@@ -116,7 +116,7 @@
 									</div>
 									<div class="prd-size swatches">
 										<div class="option-label">Size:</div>
-										<select class="form-control hidden single-option-selector-modalQuickView" id="SingleOptionSelector-1" data-index="option2">
+										<select class="form-control hidden single-option-selector-modalQuickView" name="size" id="SingleOptionSelector-1" data-index="option2">
 											<option value="Small" selected="selected">Small</option>
 											<option value="Medium">Medium</option>
 											<option value="Large">Large</option>
@@ -136,25 +136,7 @@
 											<p class="coupon-code" id="myInput">{{$c->coupon_code}}</p>
 										</div>
 										@endforeach
-										<!--<div class="inline-coupon tooltip"> <a onclick="myFunction()" onmouseout="outFunc()"> <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>-->
-										<!--	Tap to copy</a>-->
-										<!--</div>-->
-										<!-- <hr style="border:1px dashed #DA3F7F;">
-										<p class="best-offers pb-1">• Get Flat 20% Off All Orders Above ₹1999</p>
-										<div class="inline-coupon">
-											<p class="coupon-code" id="myInput2">TREAT20</p>
-										</div> -->
-										<!--<div class="inline-coupon tooltip"> <a onclick="myFunction2()" onmouseout="outFunc2()"> <span class="tooltiptext" id="myTooltip2">Copy to clipboard</span>-->
-										<!--	Tap to copy</a>-->
-										<!--</div>-->
-										<!-- <hr style="border:1px dashed #DA3F7F;">
-										<p class="best-offers pb-1">• Get Flat ₹250 Off All Orders Above ₹1499</p>
-										<div class="inline-coupon">
-											<p class="coupon-code" id="myInput3">WELCOME250</p>
-										</div> -->
-										<!--<div class="inline-coupon tooltip"> <a onclick="myFunction3()" onmouseout="outFunc3()"> <span class="tooltiptext" id="myTooltip3">Copy to clipboard</span>-->
-										<!--	Tap to copy</a>-->
-										<!--</div>-->
+										
 										<hr style="border:1px dashed #DA3F7F;">
 										<p class="best-offers"><strong>Apply the coupon during checkout.</strong></p>
 									</div>
@@ -163,12 +145,13 @@
 									<div class="prd-block_qty">
 										<div class="qty qty-changer">
 											<button class="decrease js-qty-button"></button>
-											<input type="number" class="qty-input" name="quantity" value="1" data-min="1" data-max="1000">
+											<input type="number" class="qty-input" name="qty" value="1" data-min="1" data-max="1000">
 											<button class="increase js-qty-button"></button>
 										</div>
 									</div>
 									<div class="btn-wrap">
-										<button class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart" data-product="{&quot;name&quot;:  &quot;Leather Pegged Pants &quot;,  &quot;url &quot;: &quot;product.html&quot;,  &quot;path &quot;: &quot;images/skins/fashion/product-page/product-01.webp&quot;,  &quot;aspect_ratio &quot;: &quot;0.78&quot;}">Add to cart</button>
+										{{csrf_field()}}
+										<button onclick="return addToCart({{$productDetails->id}});" class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart" data-product="{&quot;name&quot;:  &quot;Leather Pegged Pants &quot;,  &quot;url &quot;: &quot;product.html&quot;,  &quot;path &quot;: &quot;images/skins/fashion/product-page/product-01.webp&quot;,  &quot;aspect_ratio &quot;: &quot;0.78&quot;}">Add to cart</button>
 									</div>
 									<div class="btn-wishlist-wrap"> <a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--add js-add-wishlist" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a> <a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--off js-remove-wishlist" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> </div>
 								</div>
@@ -758,3 +741,24 @@ Little alteration near neck. Love this brand ❤️t</span></p>
 	</div>
 </div>
 @endsection
+<script>
+	function addToCart(id){
+		var size = $('#SingleOptionSelector-1').val();
+		var qty=$('input[name="qty"]').val();
+		//alert(size);
+		var _token = $('input[name="_token"]').val();
+		$.ajax({
+			url:"{{ route('add.to.cart') }}",
+			method:"POST",
+			data:{qty:qty,size:size,id:id,_token:_token},
+			dataType: "json",
+			success:function(data)
+			{
+				// $('#qty').append(data.cartData.qty);
+				$('.update_cart').html(data.html);
+				//console.log(data.cartData.qty);
+				$("#message").text(data.message).css("color", "green");
+			}
+		});
+	}
+</script>

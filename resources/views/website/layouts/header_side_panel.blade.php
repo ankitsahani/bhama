@@ -77,7 +77,7 @@
 				<div class="dropdn-close"><span class="js-dropdn-close">Close</span></div>
 				<ul>
 					<li><a href="account-create.html"><span>Log In</span><i class="icon-login"></i></a></li>
-					<li><a href="account-create.html"><span>Register</span><i class="icon-user2"></i></a></li>
+					<li><a href="{{route('user-register')}}"><span>Register</span><i class="icon-user2"></i></a></li>
 					<li><a href="checkout.html"><span>Checkout</span><i class="icon-card"></i></a></li>
 				</ul>
 				<div class="dropdn-form-wrapper">
