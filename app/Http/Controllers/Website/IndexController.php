@@ -120,10 +120,20 @@ class IndexController extends Controller
       return view('website.user.user_address',compact('address'));
        
     }
-    public function updateUserAddress(Request $request,$id){
-       
-    Address::where('id',$id)->update(['country'=>$request->country,'city'=>$request->city,'state'=>$request->state,'pincode'=>$request->pincode,'default'=>$request->default]);
+    public function updateUserAddressForm(Request $request){
+        $addressid=$request->id;
+        $id=Auth::user()->id;
+        $address=Address::where(['user_id'=>$id,'id'=>$addressid])->first();
+        return json_encode(array('message'=>'add successfully',
+                        'data'=>$address
+                ));
+       }
+    public function updateUserAddress(Request $request){
+       // dd($request->all());
+        $data['checkbox']=$request->chekbox1=='on'?1:0;
+        Address::where('id',$request->editAddID)->update(['country'=>$request->country,'city'=>$request->city,'state'=>$request->state,'pincode'=>$request->pincode,'default'=>$data['checkbox']]);
         return redirect()->back()->with('flash_message_success','user address updated successfully');
+
     }
     public function deleteUserAddress(Request $request,$id){
         Address::where('id',$id)->delete();

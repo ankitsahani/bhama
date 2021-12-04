@@ -115,7 +115,9 @@ Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@pro
     Route::match(['get','post'],'/user-account', 'Website\IndexController@userAccount')->name('user-account');
     Route::match(['get','post'],'/user-account-update', 'Website\IndexController@updateUserAccount')->name('user-account-update');
     Route::match(['get','post'],'/user-address', 'Website\IndexController@userAddress')->name('user-address');
-    Route::match(['get','post'],'/update-user-address/{id}', 'Website\IndexController@updateUserAddress')->name('update-user-address');
+    Route::match(['get','post'],'/update-user-address-form', 'Website\IndexController@updateUserAddressForm')->name('update-user-address-form');
+    Route::match(['get','post'],'/update-user-address', 'Website\IndexController@updateUserAddress')->name('update-user-address');
+  
     Route::match(['get','post'],'/delete-user-address/{id}', 'Website\IndexController@deleteUserAddress')->name('delete-user-address');
     Route::match(['get','post'],'/wishlist', 'Website\IndexController@userWishlist')->name('wishlist');
     Route::match(['get','post'],'/remove-wishlist', 'Website\IndexController@removeWishlist')->name('remove-wishlist');
