@@ -129,8 +129,8 @@ class IndexController extends Controller
                 ));
        }
     public function updateUserAddress(Request $request){
-       // dd($request->all());
-        $data['checkbox']=$request->chekbox1=='on'?1:0;
+        //dd($request->all());
+        $data['checkbox']=$request->checkbox1=='on'?1:0;
         Address::where('id',$request->editAddID)->update(['country'=>$request->country,'city'=>$request->city,'state'=>$request->state,'pincode'=>$request->pincode,'default'=>$data['checkbox']]);
         return redirect()->back()->with('flash_message_success','user address updated successfully');
 

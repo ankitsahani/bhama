@@ -19,7 +19,7 @@
 									<br>  {{$row->state}} {{$row->city}}
 									<br> {{$row->pincode}}</p>
 								<div class="mt-2 clearfix">
-									<a href="javascript:void(0);" class="link-icn js-show-form" data-form="#updateAddress"><i class="icon-pencil"></i>Edit</a>
+									<a href="javascript:void(0);" onclick="return updateUserAccount({{$row->id}})" class="link-icn js-show-form" data-form="#updateAddress"><i class="icon-pencil"></i>Edit</a>
                                     @csrf
 									<a href="{{url('delete-user-address/'.$row->id)}}" onclick="return confirm('Are you sure you want delete?')"class="link-icn ml-1 float-right"><i class="icon-cross"></i>Delete</a>
 								</div>
