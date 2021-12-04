@@ -13,6 +13,7 @@ use App\ProductsAttribute;
 use App\Coupon;
 use App\HomeMenu;
 use App\User;
+use App\Gallery;
 class IndexController extends Controller
 {
     //
@@ -25,8 +26,9 @@ class IndexController extends Controller
         $menu3 = HomeMenu::where("menu_position", "=", 3)->get()->toArray();;
         $menu4 = HomeMenu::where("menu_position", "=", 4)->get()->toArray();;
         $menu5 = HomeMenu::where("menu_position", "=", 5)->get()->toArray();;
+       $gallery = Gallery::all();
        // print_r($menu5[0]['image']);die;
-        return view('website.index',compact('categories','menu1','menu2','menu3','menu4','menu5'));
+        return view('website.index',compact('categories','menu1','menu2','menu3','menu4','menu5','gallery'));
     }
     public function productListing(){
         $product=Product::all();

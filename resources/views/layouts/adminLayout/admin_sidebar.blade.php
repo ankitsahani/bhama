@@ -80,7 +80,16 @@
             <a href="{{url ('/admin/view-home-menu')}}">View Home Menu</a></li>
         </ul>
       </li>
-      
+      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Promotion </span> <span class="label label-important">2</span></a>
+        <ul <?php if(preg_match("/promotion-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
+          <li <?php if(preg_match("/add-promotion-menu/i", $url)){ ?> class="active" <?php } ?>>
+            <a href="{{url ('/admin/add-promotion-menu')}}">Add Promotion</a></li>
+        </ul>
+<ul <?php if(preg_match("/view-promotion-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
+          <li <?php if(preg_match("/view-promotion-menu/i", $url)){ ?> class="active" <?php } ?>>
+            <a href="{{url ('/admin/view-promotion-menu')}}">View Promotion</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
   <!--sidebar-menu-->

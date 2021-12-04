@@ -86,19 +86,21 @@
                 </div>
             </div>
             <div class="galleryrow">
+                @foreach($gallery as $g)
                 <div class="gallerycol">
                     <div class="gallery-box m-1 mt-3 ">
                         <div class="gallery-imgbox " >
-                            <img src="{{asset('website_assets/newimages/galaxy1.webp')}}"  alt="">
+                            <img src="{{asset('/images/backend_img/gallerymenu/large/'.$g->image)}}"  alt="">
                             <div class="gallery-imgname">
-                               <h3 style="font-weight: 400; font-size: 21px; line-height: 1.5em; margin-bottom: 0px;"><a href="#">How to Plan a Holiday Party in a Pandemic</a></h3> 
-                                <p style="margin:0px;padding:0px;"><span style="color:#ee7db6af; font-size: 12px;"> November 10th 2021 <br></span>
+                               <h3 style="font-weight: 400; font-size: 21px; line-height: 1.5em; margin-bottom: 0px;"><a href="#">{{$g->name}}</a></h3> 
+                                <p style="margin:0px;padding:0px;"><span style="color:#ee7db6af; font-size: 12px;">{{$g->created_at}}<br></span>
                                 <a href="#">Read More</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="gallerycol">
+                @endforeach
+                <!-- <div class="gallerycol">
                     <div class="gallery-box m-1 mt-3 ">
                         <div class="gallery-imgbox " >
                             <img src="{{asset('website_assets/newimages/galaxy2.webp')}}"  alt="">
@@ -121,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
         </div>
@@ -199,4 +201,4 @@
     
 </div>
 
-		@endsection
+        @endsection
