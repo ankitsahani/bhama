@@ -14,6 +14,11 @@ use App\Coupon;
 use App\HomeMenu;
 use App\User;
 use App\Gallery;
+use Auth;
+use App\Address;
+use App\Wishlist;
+use Session;
+ use Cache;
 class IndexController extends Controller
 {
     //
@@ -33,6 +38,7 @@ class IndexController extends Controller
     public function productListing(){
         $product=Product::all();
         $banner=Banner::all();
+        
         return view('website.index2',compact('product','banner'));
     }
     
@@ -78,24 +84,91 @@ class IndexController extends Controller
            
             $user['name']     =   $request->first_name.' '.$request->last_name;
             $user['email']   =   $request->email;
-            $user['password'] =   $request->password;
+            $user['password'] =   bcrypt($request->password);
             User::create($user);
-            return redirect()->back();
+            return redirect()->back()->with('flash_message_success','User Registered successfully');
         }
-        return view('website.register');
+        return view('website.user.register');
     }
-    public function userLogin(){
+    public function userLogin(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
+            //dd($data);
             if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>1])){
-              //echo "Success"; die;
-             // Session::put('adminSession',$data['email']);
-              return redirect('p');
+              return redirect('/user-account')->with('flash_message_success','Login successfully');
             }else{
               //echo "Failed"; die;
-              return redirect('/admin')->with('flash_message_error','Invalid Username or Password');
+              return redirect('/user-login')->with('flash_message_error','Invalid Username or Password');
             }
          }
+        return view('website.user.login');
+    }
+    public function userAccount(Request $request){
+
+            $user=Auth::user();
+            
+            return view('website.user.useraccount',compact('user'));
+    }
+    public function updateUserAccount(Request $request){
+            $id=Auth::user()->id;
+            User::where('id',$id)->update(['name'=> $request->first_name.' '.$request->last_name,'email'=> $request->email,'mobile'=>$request->mobile,'password'=>bcrypt($request->password)]);
+            return redirect()->back()->with('flash_message_success','user updated successfully');
+    }
+    public function userAddress(Request $request){
+        $id=Auth::user()->id;
+        $address=Address::where('user_id',$id)->get();
+      return view('website.user.user_address',compact('address'));
+       
+    }
+    public function updateUserAddress(Request $request,$id){
+       
+    Address::where('id',$id)->update(['country'=>$request->country,'city'=>$request->city,'state'=>$request->state,'pincode'=>$request->pincode,'default'=>$request->default]);
+        return redirect()->back()->with('flash_message_success','user address updated successfully');
+    }
+    public function deleteUserAddress(Request $request,$id){
+        Address::where('id',$id)->delete();
+        return redirect()->back()->with('flash_message_success','user address deleted successfully');
+    }
+    public function userWishlist(Request $request){
+        $id=Auth::user()->id;
+        $wishlistProduct=Product::leftjoin('wishlists','products.id','=','wishlists.product_id')->where('wishlists.user_id','=',$id)->where('wishlists.status',1)->get();
+        return view('website.user.user_wishlist',compact('wishlistProduct'));
+    }
+    public function addWishlist(Request $request){
+        $user_id=Auth::user()->id;
+        $wishlist= Wishlist::where(['product_id'=>$request->id,'user_id'=>$user_id])->first();
+        if($wishlist){
+           if($wishlist->status==1){
+            $wishlist=Wishlist::where(['product_id'=>$request->id,'user_id'=>$user_id])->update(['status'=>0]);
+                return json_encode(array('message'=>'add successfully'
+                ));
+           }else{
+            $wishlist=Wishlist::where(['product_id'=>$request->id,'user_id'=>$user_id])->update(['status'=>1]);
+                return json_encode(array('message'=>'add successfully'));
+           }
+        
+        }else{
+            $wishlist=new Wishlist();
+            $wishlist->user_id    = $user_id;
+            $wishlist->product_id = $request->id;
+            $wishlist->save();
+            return json_encode(array('message'=>'add successfully'));
+        }
+    }
+    public function removeWishlist(Request $request){
+        $user_id=Auth::user()->id;
+        $product_id=$request->id;
+        $wishlist=Wishlist::where('id',$product_id)->update(['status'=>0]);
+        
+        return json_encode(array('message'=>'remove successfully'
+                                )
+                );
+    }
+    public function userLogout(){
+        Auth::logout();
+        Session::flush();
+        Cache::flush();
+        return redirect('/product-listing');
     }
   
 }

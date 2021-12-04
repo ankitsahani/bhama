@@ -125,7 +125,31 @@
 											</div>
 										</div>
 									</a>
-									<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="{{asset('website_assets/ajax/ajax-quickview.html')}}"><i class="icon-eye"></i><span>QUICK VIEW</span></a> </div>
+									<div class="prd-circle-labels">{{csrf_field()}}
+										@php 
+										$wishlist=\App\Wishlist::where('product_id',$row->id)->first();
+										@endphp
+										@if($wishlist)
+										@if($wishlist->status==0)
+										 <a href="javascript:void(0)" onclick="return addWishlist({{$row->id}});" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist">
+										 	<i class="icon-heart-stroke"></i>
+										</a>
+										@else
+										<a href="javascript:void(0);"  onclick="return addWishlist({{$row->id}});" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist">
+											<i class="icon-heart-hover"></i>
+										</a> 
+										@endif
+										@else
+										<a href="javascript:void(0)" onclick="return addWishlist({{$row->id}});" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist">
+										 	<i class="icon-heart-stroke"></i>
+										</a>
+										@endif
+										
+										<a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="{{asset('website_assets/ajax/ajax-quickview.html')}}">
+											<i class="icon-eye"></i>
+											<span>QUICK VIEW</span>
+										</a> 
+										</div>
 									<ul class="list-options color-swatch">
 										@php 
 										$productImages=App\ProductsImage::where('product_id',$row->id)->take(2)->get();
@@ -147,7 +171,7 @@
 											<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
 										</div>
 										<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-										<div class="prd-tag"><a href="#">Banita</a></div>
+										
 										<h2 class="prd-title"><a href="{{url('single-product/'.$row->id)}}">{{$row->product_name}}</a></h2>
 										<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
 										<div class="prd-action">
@@ -214,3 +238,22 @@
 </div>
 
 @endsection
+<script>
+function addWishlist(id){
+
+	var _token = $('input[name="_token"]').val();
+	$.ajax({
+			url:"{{ route('add-wishlist') }}",
+			method:"POST",
+			data:{id:id,_token:_token},
+			dataType: "json",
+			success:function(data)
+			{
+				// console.log(data.data);
+				// $('#loadMorePendigPayment').html(data.html);
+				//toastr.success('Retail Price Setting Updated', 'Success');
+			}
+		
+		});
+}
+</script>
