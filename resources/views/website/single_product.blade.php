@@ -151,7 +151,7 @@
 									</div>
 									<div class="btn-wrap">
 										{{csrf_field()}}
-										<button onclick="return addToCart({{$productDetails->id}});" class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart" data-product="{&quot;name&quot;:  &quot;Leather Pegged Pants &quot;,  &quot;url &quot;: &quot;product.html&quot;,  &quot;path &quot;: &quot;images/skins/fashion/product-page/product-01.webp&quot;,  &quot;aspect_ratio &quot;: &quot;0.78&quot;}">Add to cart</button>
+										<a onclick="return addToCart({{$productDetails->id}});" class="btn btn--add-to-cart js-trigger-addtocart js-prd-addtocart" >Add to cart</a>
 									</div>
 									<div class="btn-wishlist-wrap"> <a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--add js-add-wishlist" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a> <a href="#" class="btn-add-to-wishlist ml-auto btn-add-to-wishlist--off js-remove-wishlist" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> </div>
 								</div>
@@ -424,37 +424,38 @@ Little alteration near neck. Love this brand ❤️t</span></p>
 				<div class="carousel-arrows carousel-arrows--center"></div>
 			</div>
 			<div class="prd-grid prd-carousel js-prd-carousel slick-arrows-aside-simple slick-arrows-mobile-lg data-to-show-4 data-to-show-md-3 data-to-show-sm-3 data-to-show-xs-2" data-slick='{"slidesToShow": 4, "slidesToScroll": 2, "responsive": [{"breakpoint": 992,"settings": {"slidesToShow": 3, "slidesToScroll": 1}},{"breakpoint": 768,"settings": {"slidesToShow": 2, "slidesToScroll": 1}},{"breakpoint": 480,"settings": {"slidesToShow": 2, "slidesToScroll": 1}}]}'>
+				
 				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
 					<div class="prd-inside">
 						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-06-1.webp" alt="Midi Dress with Belt" class="js-prd-img lazyload fade-up">
+							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" alt="Midi Dress with Belt" class="js-prd-img lazyload fade-up">
 								<div class="bhama-loader"></div>
 								<div class="prd-big-squared-labels"> </div>
 							</a>
 							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a>
 								<div class="colorswatch-label colorswatch-label--variants js-prd-colorswatch"> <i class="icon-palette"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></i>
 									<ul>
-										<li data-image="images/skins/fashion/products/product-06-1.webp">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="images/colorswatch/color-grey.html" alt=""></a>
+										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}">
+											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-grey.html')}}" alt=""></a>
 										</li>
-										<li data-image="images/skins/fashion/products/product-06-color-2.webp">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="images/colorswatch/color-green.html" alt=""></a>
+										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-color-2.webp')}}">
+											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-green.html')}}" alt=""></a>
 										</li>
-										<li data-image="images/skins/fashion/products/product-06-color-3.webp">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="images/colorswatch/color-black.html" alt=""></a>
+										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-color-3.webp')}}">
+											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-black.html')}}" alt=""></a>
 										</li>
 									</ul>
 								</div>
 							</div>
 							<ul class="list-options color-swatch">
-								<li data-image="images/skins/fashion/products/product-06-1.webp" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-06-1.webp" class="lazyload fade-up" alt="Color Name"></a>
+								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" class="active">
+									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
 								</li>
-								<li data-image="images/skins/fashion/products/product-06-2.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-06-2.webp" class="lazyload fade-up" alt="Color Name"></a>
+								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-2.webp')}}">
+									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-2.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
 								</li>
-								<li data-image="images/skins/fashion/products/product-06-3.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-06-3.webp" class="lazyload fade-up" alt="Color Name"></a>
+								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-3.webp')}}">
+									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-3.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
 								</li>
 							</ul>
 						</div>
@@ -498,244 +499,7 @@ Little alteration near neck. Love this brand ❤️t</span></p>
 						</div>
 					</div>
 				</div>
-				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
-					<div class="prd-inside">
-						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-17-1.webp" alt="Stand Collar Shirt" class="js-prd-img lazyload fade-up">
-								<div class="bhama-loader"></div>
-								<div class="prd-big-squared-labels">
-									<div class="label-sale"><span>-10% <span class="sale-text">Sale</span></span>
-										<div class="countdown-circle">
-											<div class="countdown js-countdown" data-countdown="2021/07/01"></div>
-										</div>
-									</div>
-								</div>
-							</a>
-							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a> </div>
-							<ul class="list-options color-swatch">
-								<li data-image="images/skins/fashion/products/product-17-1.webp" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-17-1.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-17-2.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-17-2.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-17-3.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-17-3.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-							</ul>
-						</div>
-						<div class="prd-info">
-							<div class="prd-info-wrap">
-								<h2 class="prd-title"><a href="product.html">Stand Collar Shirt</a></h2>
-								<div class="prd-info-top">
-									<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-								</div>
-								<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-									<div style="color:#ee7db6af;">(17)</div>
-								</div>
-								<!--<div class="prd-tag"><a href="#">bhama</a></div>-->
-								<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
-								<div class="prd-action">
-									<form action="#">
-										<button class="btn js-prd-addtocart" data-product='{"name": "Stand Collar Shirt", "path":"images/skins/fashion/products/product-17-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-									</form>
-								</div>
-							</div>
-							<div class="prd-hovers">
-								<div class="prd-circle-labels">
-									<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a></div>
-									<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
-								</div>
-								<div class="prd-price">
-									<div class="price-new">₹ 180</div>
-									<div class="price-old" style="color:#ee7db6af;">₹ 200</div>
-								</div>
-								<div class="">
-									<br>(50% Off)</div>
-								<div class="prd-action">
-									<div class="prd-action-left">
-										<form action="#">
-											<button class="btn js-prd-addtocart" data-product='{"name": "Stand Collar Shirt", "path":"images/skins/fashion/products/product-17-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
-					<div class="prd-inside">
-						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-21-1.webp" alt="Genuine Leather Strap Watch" class="js-prd-img lazyload fade-up">
-								<div class="bhama-loader"></div>
-								<div class="prd-big-squared-labels">
-									<div class="label-new"><span>New</span></div>
-								</div>
-							</a>
-							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a> </div>
-							<ul class="list-options color-swatch">
-								<li data-image="images/skins/fashion/products/product-21-1.webp" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-21-1.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-21-2.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-21-2.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-21-3.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-21-3.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-							</ul>
-						</div>
-						<div class="prd-info">
-							<div class="prd-info-wrap">
-								<h2 class="prd-title"><a href="product.html">Genuine Leather Strap Watch</a></h2>
-								<div class="prd-info-top">
-									<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-								</div>
-								<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-									<div style="color:#ee7db6af;">(17)</div>
-								</div>
-								<!--<div class="prd-tag"><a href="#">bhama</a></div>-->
-								<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
-								<div class="prd-action">
-									<form action="#">
-										<button class="btn js-prd-addtocart" data-product='{"name": "Genuine Leather Strap Watch", "path":"images/skins/fashion/products/product-21-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-									</form>
-								</div>
-							</div>
-							<div class="prd-hovers">
-								<div class="prd-circle-labels">
-									<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a></div>
-									<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
-								</div>
-								<div class="prd-price">
-									<div class="price-new">₹ 180</div>
-									<div class="price-old" style="color:#ee7db6af;">₹ 200</div>
-								</div>
-								<div class="prd-action">
-									<div class="prd-action-left">
-										<form action="#">
-											<button class="btn js-prd-addtocart" data-product='{"name": "Genuine Leather Strap Watch", "path":"images/skins/fashion/products/product-21-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
-					<div class="prd-inside">
-						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-26-1.webp" alt="Pureboost Running Shoes" class="js-prd-img lazyload fade-up">
-								<div class="bhama-loader"></div>
-								<div class="prd-big-squared-labels"> </div>
-							</a>
-							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a> </div>
-							<ul class="list-options color-swatch">
-								<li data-image="images/skins/fashion/products/product-26-1.webp" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-26-1.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-26-2.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-26-2.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-26-3.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-26-3.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-							</ul>
-						</div>
-						<div class="prd-info">
-							<div class="prd-info-wrap">
-								<h2 class="prd-title"><a href="product.html">Pureboost Running Shoes</a></h2>
-								<div class="prd-info-top">
-									<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-								</div>
-								<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-									<div style="color:#ee7db6af;">(17)</div>
-								</div>
-								<!--<div class="prd-tag"><a href="#">bhama</a></div>-->
-								<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
-								<div class="prd-action">
-									<form action="#">
-										<button class="btn js-prd-addtocart" data-product='{"name": "Pureboost Running Shoes", "path":"images/skins/fashion/products/product-26-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-									</form>
-								</div>
-							</div>
-							<div class="prd-hovers">
-								<div class="prd-circle-labels">
-									<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a></div>
-									<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
-								</div>
-								<div class="prd-price">
-									<div class="price-new">₹ 180</div>
-									<div class="price-old" style="color:#ee7db6af;">₹ 200</div>
-								</div>
-								<div class="prd-action">
-									<div class="prd-action-left">
-										<form action="#">
-											<button class="btn js-prd-addtocart" data-product='{"name": "Pureboost Running Shoes", "path":"images/skins/fashion/products/product-26-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
-					<div class="prd-inside">
-						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-30-1.webp" alt="Multiple Pocket Waist Pack" class="js-prd-img lazyload fade-up">
-								<div class="bhama-loader"></div>
-								<div class="prd-big-squared-labels"> </div>
-							</a>
-							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a> </div>
-							<ul class="list-options color-swatch">
-								<li data-image="images/skins/fashion/products/product-30-1.webp" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-30-1.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-30-2.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-30-2.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="images/skins/fashion/products/product-30-3.webp">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/products/product-30-3.webp" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-							</ul>
-						</div>
-						<div class="prd-info">
-							<div class="prd-info-wrap">
-								<h2 class="prd-title"><a href="product.html">Multiple Pocket Waist Pack</a></h2>
-								<div class="prd-info-top">
-									<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-								</div>
-								<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-									<div style="color:#ee7db6af;">(17)</div>
-								</div>
-								<!--<div class="prd-tag"><a href="#">bhama</a></div>-->
-								<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
-								<div class="prd-action">
-									<form action="#">
-										<button class="btn js-prd-addtocart" data-product='{"name": "Multiple Pocket Waist Pack", "path":"images/skins/fashion/products/product-30-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-									</form>
-								</div>
-							</div>
-							<div class="prd-hovers">
-								<div class="prd-circle-labels">
-									<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a></div>
-									<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
-								</div>
-								<div class="prd-price">
-									<div class="price-new">₹ 180</div>
-									<div class="price-old" style="color:#ee7db6af;">₹ 200</div>
-								</div>
-								<div class="prd-action">
-									<div class="prd-action-left">
-										<form action="#">
-											<button class="btn js-prd-addtocart" data-product='{"name": "Multiple Pocket Waist Pack", "path":"images/skins/fashion/products/product-30-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			
 			</div>
 		</div>
 	</div>
@@ -755,7 +519,10 @@ Little alteration near neck. Love this brand ❤️t</span></p>
 			success:function(data)
 			{
 				// $('#qty').append(data.cartData.qty);
-				$('.update_cart').html(data.html);
+				// $('.update_cart').html(data.html);
+				$('#dropdnMinicart').html(data.cartData);
+				$('.minicart-total').html(data.price);
+				$('.minicart-qty').html(data.count);
 				//console.log(data.cartData.qty);
 				$("#message").text(data.message).css("color", "green");
 			}

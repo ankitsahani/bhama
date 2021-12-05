@@ -176,7 +176,7 @@
 										<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
 										<div class="prd-action">
 											<form action="#">
-												<button class="btn js-prd-addtocart" data-product='{"name": "Oversized Cotton Blouse", "path":"images/skins/fashion/products/product-03-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
+												<a href="{{url('single-product/'.$row->id)}}" class="btn js-prd-addtocart" >Full View</a>
 											</form>
 										</div>
 									</div>
@@ -192,7 +192,7 @@
 										<div class="prd-action">
 											<div class="prd-action-left">
 												<form action="#">
-													<button class="btn js-prd-addtocart" data-product='{"name": "Oversized Cotton Blouse", "path":"images/skins/fashion/products/product-03-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
+													<a href="{{url('single-product/'.$row->id)}}" class="btn js-prd-addtocart" >Full View</a>
 												</form>
 											</div>
 										</div>
@@ -250,7 +250,7 @@ function addWishlist(id){
 			success:function(data)
 			{
 				// console.log(data.data);
-				// $('#loadMorePendigPayment').html(data.html);
+				 $('.wishlist-qty').html(data.count);
 				//toastr.success('Retail Price Setting Updated', 'Success');
 			}
 		

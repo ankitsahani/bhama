@@ -104,14 +104,16 @@ Route::get('/logout', 'Admin\AdminController@logout');
 Route::match(['get','post'],'/', 'Website\IndexController@index')->name('index');
 Route::match(['get','post'],'/register', 'Website\IndexController@userRegister')->name('user-register');
 Route::match(['get','post'],'/user-login', 'Website\IndexController@userLogin')->name('user-login');
-Route::match(['get','post'],'/user-logout', 'Website\IndexController@userLogout')->name('user-logout');
 
 Route::match(['get','post'],'/product-listing', 'Website\IndexController@productListing')->name('product.listing');
 Route::match(['get','post'],'/aboutus', 'Website\StaticController@aboutUs')->name('about.us');
 Route::match(['get','post'],'/contactus', 'Website\StaticController@contactUs')->name('contact.us');
 Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@productSingle')->name('product.single');
 
+Route::middleware([frontmiddleware::class])->group(function () {
 // Route::group(['middleware' => ['websitemiddleware']],function(){
+    Route::match(['get','post'],'/user-logout', 'Website\IndexController@userLogout')->name('user-logout');
+
     Route::match(['get','post'],'/user-account', 'Website\IndexController@userAccount')->name('user-account');
     Route::match(['get','post'],'/user-account-update', 'Website\IndexController@updateUserAccount')->name('user-account-update');
     Route::match(['get','post'],'/user-address', 'Website\IndexController@userAddress')->name('user-address');
@@ -126,5 +128,11 @@ Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@pro
     Route::match(['get','post'],'cart','Website\CartController@cart')->name('cart');
     Route::match(['get','post'],'add-to-cart', 'Website\CartController@addToCart')->name('add.to.cart');
     Route::patch('update-cart', 'Website\CartController@updateCart')->name('update.cart');
-    Route::delete('remove-from-cart','Website\CartController@removeCart')->name('remove.from.cart');
-// });
+    Route::match(['get','post'],'remove-from-cart','Website\CartController@removeCart')->name('remove.from.cart');
+
+    Route::match(['get','post'],'order-history','Website\OrderController@orderHistory')->name('order-history');
+    Route::post('paysuccess', 'Website\RazorpayController@razorPaySuccess')->name('paysuccess');
+    Route::match(['get','post'],'razor-thank-you', 'Website\RazorpayController@RazorThankYou')->name('razor-thank-you');
+ });
+
+ 

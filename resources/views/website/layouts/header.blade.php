@@ -22,11 +22,14 @@
 								</div>
 							</div>
 							<div class="dropdn dropdn_wishlist">
-								<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span> </a>
+								@php 
+								$totalwishlist=App\Wishlist::where('status',1)->count();
+								@endphp
+								<a href="{{route('wishlist')}}" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">{{$totalwishlist}}</span> </a>
 							</div>
 							<div class="dropdn dropdn_account dropdn_fullheight"> <a href="#" class="dropdn-link js-dropdn-link js-dropdn-link only-icon" data-panel="#dropdnAccount"><i class="icon-user"></i><span class="dropdn-link-txt">Account</span></a> </div>
 							<div class="dropdn dropdn_fullheight minicart">
-								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon" data-panel="#dropdnMinicart"> <i class="icon-basket"></i> <span class="minicart-qty">3</span> <span class="minicart-total hide-mobile">₹34.99</span> </a>
+								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon" data-panel="#dropdnMinicart"> <i class="icon-basket"></i> <span class="minicart-qty">{{\Cart::count()}}</span> <span class="minicart-total hide-mobile">₹{{\Cart::priceTotal()}}</span> </a>
 							</div>
 						</div>
 					</div>
@@ -105,7 +108,7 @@
 											</li>
 											<li><a href="cart.html">Cart & Checkout</a>
 												<ul>
-													<li><a href="cart.html">Cart Page</a></li>
+													<li><a href="{{route('cart')}}">Cart Page</a></li>
 													<li><a href="cart-empty.html">Empty cart</a></li>
 													<li><a href="checkout.html">Checkout variant 1</a></li>
 													<li><a href="checkout-2.html">Checkout variant 2</a></li>
@@ -114,7 +117,7 @@
 											</li>
 											<li><a href="account-create.html">Account</a>
 												<ul>
-													<li><a href="account-create.html">Login</a></li>
+													<li><a href="{{route('user-login')}}">Login</a></li>
 													<li><a href="{{route('user-register')}}">Create account</a></li>
 													<li><a href="account-details.html">Account details</a></li>
 													<li><a href="account-addresses.html">Account addresses</a></li>
@@ -340,13 +343,13 @@
 									</div>
 								</div>
 								<div class="dropdn dropdn_wishlist">
-									<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span> </a>
+									<a href="{{route('wishlist')}}" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">{{$totalwishlist}} </span> </a>
 								</div>
 								<div class="hdr_container_mobile show-mobile">
 									<div class="dropdn dropdn_account dropdn_fullheight"> <a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount"><i class="icon-user"></i><span class="dropdn-link-txt">Account</span></a> </div>
 								</div>
 								<div class="dropdn dropdn_fullheight minicart">
-									<a href="#" class="dropdn-link js-dropdn-link minicart-link" data-panel="#dropdnMinicart"> <i class="icon-basket"></i> <span class="minicart-qty">3</span> <span class="minicart-total hide-mobile">₹34.99</span> </a>
+									<a href="#" class="dropdn-link js-dropdn-link minicart-link" data-panel="#dropdnMinicart"> <i class="icon-basket"></i> <span class="minicart-qty">{{\Cart::count()}}</span> <span class="minicart-total hide-mobile">₹{{\Cart::priceTotal()}}</span> </a>
 								</div>
 							</div>
 						</div>

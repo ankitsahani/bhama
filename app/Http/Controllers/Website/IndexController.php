@@ -150,11 +150,13 @@ class IndexController extends Controller
         if($wishlist){
            if($wishlist->status==1){
             $wishlist=Wishlist::where(['product_id'=>$request->id,'user_id'=>$user_id])->update(['status'=>0]);
-                return json_encode(array('message'=>'add successfully'
+                 $totalWishlist=Wishlist::where('status',1)->count();
+                return json_encode(array('message'=>'add successfully','count'=>$totalWishlist
                 ));
            }else{
             $wishlist=Wishlist::where(['product_id'=>$request->id,'user_id'=>$user_id])->update(['status'=>1]);
-                return json_encode(array('message'=>'add successfully'));
+            $totalWishlist=Wishlist::where('status',1)->count();
+                return json_encode(array('message'=>'add successfully','count'=>$totalWishlist));
            }
         
         }else{
@@ -162,7 +164,8 @@ class IndexController extends Controller
             $wishlist->user_id    = $user_id;
             $wishlist->product_id = $request->id;
             $wishlist->save();
-            return json_encode(array('message'=>'add successfully'));
+            $totalWishlist=Wishlist::where('status',1)->count();
+            return json_encode(array('message'=>'add successfully','count'=>$totalWishlist));
         }
     }
     public function removeWishlist(Request $request){
