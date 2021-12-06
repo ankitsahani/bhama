@@ -1,3 +1,7 @@
+@php
+$menmegamenu = Helper::getMenMegaMenu();
+$womenmegamenu = Helper::getWomenMegaMenu();
+@endphp
 <div class="hdr-content hdr-content-sticky">
 			<div class="container">
 				<div class="row">
@@ -84,7 +88,7 @@
 							<div class="menu-toggle"> <a href="#" class="mobilemenu-toggle"><i class="icon-menu"></i></a> </div>
 						</div>
 						<div class="col-auto hdr-logo">
-							<a href="index.html" class="logo"><img srcset="{{asset('website_assets/images/skins/fashion/logo.webp')}}" alt="Logo"></a>
+							<a href="{{route('index')}}" class="logo"><img srcset="{{asset('website_assets/images/skins/fashion/logo.webp')}}" alt="Logo"></a>
 						</div>
 						<div class="hdr-nav hide-mobile nav-holder justify-content-center px-4">
 							<ul class="mmenu mmenu-js">
@@ -155,67 +159,25 @@
 														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="{{asset('website_assets/images/menu/mmenu-bnr-01.webp')}}" class="lazyload fade-up" alt=""></a>
 													</div>
 													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3> </div>
+											    
 												<div class="mmenu-cols column-4">
+													@foreach($menmegamenu as $m)
 													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Collections</a></h3>
+														<h3 class="submenu-title"><a href="category.html">{{$m->name}}</a></h3>
 														<ul class="submenu-list">
-															<li><a href="category.html">Martins d'Art 2020/21<span class="submenu-link-txt">Available in boutiques from June 2019</span></a></li>
-															<li><a href="category.html">Spring-Summer 2021<span class="submenu-link-txt">Available in boutiques from March 2019</span></a></li>
-															<li><a href="category.html">Spring-Summer 2021 Pre-Collection<span class="submenu-link-txt">In boutiques</span></a></li>
-															<li><a href="category.html">Cruise 2020/21<span class="submenu-link-txt">In boutiques</span></a></li>
-															<li><a href="category.html">Fall-Winter 2020/21</a></li>
+															@php 
+																$submenu=App\MegaMenues::where('parent_id',$m->id)->get();
+															@endphp
+                                                            @foreach($submenu as $s)
+															<li><a href="category.html"><span class="submenu-link-txt">{{$s->name}}</span></a></li>
+															@endforeach
 														</ul>
 													</div>
 
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Ready-to-wear</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html" class="active">Jackets</a>
-																<ul class="sub-level">
-																	<li><a href="category.html">Bomber Jackets</a></li>
-																	<li><a href="category.html">Biker Jacket</a></li>
-																	<li><a href="category.html">Trucker Jacket</a></li>
-																	<li><a href="category.html">Denim Jackets</a></li>
-																	<li><a href="category.html">Blouson Jacket<span class="menu-label">SALE</span></a></li>
-																	<li><a href="category.html">Overcoat</a></li>
-																	<li><a href="category.html">Trench Coat</a></li>
-																</ul>
-															</li>
-															<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a></li>
-															<li><a href="category.html">Blouses & Tops</a></li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts</a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-															<li><a href="category.html">Swimwear</a></li>
-														</ul>
-													</div>
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Accessories</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html">Jackets</a></li>
-															<li><a href="category.html">Dresses</a></li>
-															<li><a href="category.html">Blouses & Tops</a></li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts<span class="menu-label">SALE</span></a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-														</ul>
-													</div>
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Brands</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html">Jackets</a></li>
-															<li><a href="category.html">Dresses</a></li>
-															<li><a href="category.html">Blouses & Tops</a></li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts<span class="menu-label menu-label--color1">SALE</span></a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-														</ul>
-													</div>
+												@endforeach
 													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
 												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -230,97 +192,22 @@
 													</div>
 													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3> </div>
 												<div class="mmenu-cols column-4">
+													
+												@foreach($womenmegamenu as $m)
 													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Collections</a></h3>
+														<h3 class="submenu-title"><a href="category.html">{{$m->name}}</a></h3>
 														<ul class="submenu-list">
-															<li><a href="category.html">Martins d'Art 2020/21<span class="submenu-link-txt">Available in boutiques from June 2019</span></a></li>
-															<li><a href="category.html">Spring-Summer 2021<span class="submenu-link-txt">Available in boutiques from March 2019</span></a></li>
-															<li><a href="category.html">Spring-Summer 2021 Pre-Collection<span class="submenu-link-txt">In boutiques</span></a></li>
-															<li><a href="category.html">Cruise 2020/21<span class="submenu-link-txt">In boutiques</span></a></li>
-															<li><a href="category.html">Fall-Winter 2020/21</a></li>
+															@php 
+																$submenu=App\WomenMegaMenu::where('parent_id',$m->id)->get();
+															@endphp
+                                                            @foreach($submenu as $s)
+															<li><a href="category.html"><span class="submenu-link-txt">{{$s->name}}</span></a></li>
+															@endforeach
 														</ul>
 													</div>
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Ready-to-wear</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html">Jackets</a></li>
-															<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a></li>
-															<li><a href="category.html">Blouses & Tops</a>
-																<ul>
-																	<li><a href="category.html">Jackets</a></li>
-																	<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a></li>
-																	<li><a href="category.html">Blouses & Tops</a>
-																		<ul>
-																			<li><a href="category.html">Jackets</a></li>
-																			<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a>
-																				<ul>
-																					<li><a href="category.html">Jackets</a></li>
-																					<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a>
-																						<ul>
-																							<li><a href="category.html">Jackets</a></li>
-																							<li><a href="category.html">Dresses<span class="menu-label menu-label--color3">SALE</span></a></li>
-																							<li><a href="category.html">Blouses & Tops</a></li>
-																							<li><a href="category.html">Cardigans & Pullovers</a></li>
-																							<li><a href="category.html">Skirts</a></li>
-																							<li><a href="category.html">Pants & Shorts</a></li>
-																							<li><a href="category.html">Outerwear</a></li>
-																							<li><a href="category.html">Swimwear</a></li>
-																						</ul>
-																					</li>
-																					<li><a href="category.html">Blouses & Tops</a></li>
-																					<li><a href="category.html">Cardigans & Pullovers</a></li>
-																					<li><a href="category.html">Skirts</a></li>
-																					<li><a href="category.html">Pants & Shorts</a></li>
-																					<li><a href="category.html">Outerwear</a></li>
-																					<li><a href="category.html">Swimwear</a></li>
-																				</ul>
-																			</li>
-																			<li><a href="category.html">Blouses & Tops</a></li>
-																			<li><a href="category.html">Cardigans & Pullovers</a></li>
-																			<li><a href="category.html">Skirts</a></li>
-																			<li><a href="category.html">Pants & Shorts</a></li>
-																			<li><a href="category.html">Outerwear</a></li>
-																			<li><a href="category.html">Swimwear</a></li>
-																		</ul>
-																	</li>
-																	<li><a href="category.html">Cardigans & Pullovers</a></li>
-																	<li><a href="category.html">Skirts</a></li>
-																	<li><a href="category.html">Pants & Shorts</a></li>
-																	<li><a href="category.html">Outerwear</a></li>
-																	<li><a href="category.html">Swimwear</a></li>
-																</ul>
-															</li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts</a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-															<li><a href="category.html">Swimwear</a></li>
-														</ul>
-													</div>
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Accessories</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html">Jackets</a></li>
-															<li><a href="category.html">Dresses</a></li>
-															<li><a href="category.html">Blouses & Tops</a></li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts<span class="menu-label">SALE</span></a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-														</ul>
-													</div>
-													<div class="mmenu-col">
-														<h3 class="submenu-title"><a href="category.html">Brands</a></h3>
-														<ul class="submenu-list">
-															<li><a href="category.html">Jackets</a></li>
-															<li><a href="category.html">Dresses</a></li>
-															<li><a href="category.html">Blouses & Tops</a></li>
-															<li><a href="category.html">Cardigans & Pullovers</a></li>
-															<li><a href="category.html">Skirts<span class="menu-label menu-label--color1">SALE</span></a></li>
-															<li><a href="category.html">Pants & Shorts</a></li>
-															<li><a href="category.html">Outerwear</a></li>
-														</ul>
-													</div>
+
+												@endforeach
+													
 													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>Bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
 												</div>
 											</div>

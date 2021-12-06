@@ -51,16 +51,28 @@ Route::match(['get','post'],'/admin/add-category', 'Admin\CategoryController@add
 Route::match(['get','post'],'/admin/edit-category/{id}','Admin\CategoryController@editCategory');
 Route::match(['get','post'],'/admin/delete-category/{id}','Admin\CategoryController@deleteCategory');
 Route::get('/admin/view-categories', 'Admin\CategoryController@viewCategories');
-// Mega Menues Routes (Admin)
+// Men Mega Menues Routes (Admin)
 Route::match(['get','post'],'/admin/add-mega-menu', 'Admin\CategoryController@addMegamenu');
 Route::match(['get','post'],'/admin/edit-mega-menu/{id}','Admin\CategoryController@editMegamenu');
 Route::match(['get','post'],'/admin/delete-mega-menu/{id}','Admin\CategoryController@deleteMegamenu');
 Route::get('/admin/view-mega-menu', 'Admin\CategoryController@viewMegamenu');
+//Women Mega Menues Routes (Admin)
+Route::match(['get','post'],'/admin/add-women-mega-menu', 'Admin\CategoryController@addWomenMegamenu');
+Route::match(['get','post'],'/admin/edit-women-mega-menu/{id}','Admin\CategoryController@editWomenMegamenu');
+Route::match(['get','post'],'/admin/delete-women-mega-menu/{id}','Admin\CategoryController@deleteMegamenu');
+Route::get('/admin/view-women-mega-menu', 'Admin\CategoryController@viewWomenMegamenu');
 // Home menu Routes (Admin)
 Route::match(['get','post'],'/admin/add-home-menu', 'Admin\HomeMenuController@addHomeMenu');
 Route::match(['get','post'],'/admin/edit-home-menu/{id}','Admin\HomeMenuController@editHomeMenu');
 Route::match(['get','post'],'/admin/delete-home-menu/{id}','Admin\HomeMenuController@deleteHomeMenu');
 Route::get('/admin/view-home-menu', 'Admin\HomeMenuController@viewHomeMenu');
+
+// FooterPagesRoutes (Admin)
+Route::match(['get','post'],'/admin/add-pages', 'Admin\FooterPagesController@addPages');
+Route::match(['get','post'],'/admin/edit-pages/{id}','Admin\FooterPagesController@editPages');
+Route::match(['get','post'],'/admin/delete-pages/{id}','Admin\FooterPagesController@deletePages');
+Route::get('/admin/view-pages', 'Admin\FooterPagesController@viewPages');
+
 // gallery menu Routes (Admin)
 Route::match(['get','post'],'/admin/add-gallery-menu', 'Admin\GalleryController@addgalleryMenu');
 Route::match(['get','post'],'/admin/edit-gallery-menu/{id}','Admin\GalleryController@editgalleryMenu');

@@ -53,9 +53,9 @@
                 </div>
                 <div class="widget-content">{{$orderDetails->address}}</div>
                 <div class="widget-content">{{$orderDetails->city}}</div>
-<div class="widget-content">{{$orderDetails->state}}</div>
-<div class="widget-content">{{$orderDetails->country}}</div>
-<div class="widget-content">{{$orderDetails->pincode}}</div>
+                <div class="widget-content">{{$orderDetails->state}}</div>
+                <div class="widget-content">{{$orderDetails->country}}</div>
+                <div class="widget-content">{{$orderDetails->pincode}}</div>
 
                 </div>
                 <div class="widget-box">
@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                 <td class="taskDesc">Customer Email</td>
-                <td class="taskStatus">{{$orderDetails->user_email}}</td>
+                <td class="taskStatus">{{$orderDetails->email}}</td>
                 </tr>
             </tbody>
                     </table>

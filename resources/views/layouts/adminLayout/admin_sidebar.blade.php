@@ -28,12 +28,20 @@
             <a href="{{url ('/admin/view-categories')}}">View Categories</a></li>
         </ul>
       </li>
-      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Mega Menu</span> <span class="label label-important">2</span></a>
+      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Men Mega Menu</span> <span class="label label-important">2</span></a>
         <ul <?php if(preg_match("/mega-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
         <li <?php if(preg_match("/add-mega-menu/i", $url)){ ?> class="active" <?php } ?>>
           <a href="{{url ('/admin/add-mega-menu')}}">Add Mega Menu</a></li>
           <li <?php if(preg_match("/view-mega-menu/i", $url)){ ?> class="active" <?php } ?>>
             <a href="{{url ('/admin/view-mega-menu')}}">View Mega Menu</a></li>
+        </ul>
+      </li>
+      <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Women Mega Menu</span> <span class="label label-important">2</span></a>
+        <ul <?php if(preg_match("/women-mega-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
+        <li <?php if(preg_match("/add-women-mega-menu/i", $url)){ ?> class="active" <?php } ?>>
+          <a href="{{url ('/admin/add-women-mega-menu')}}">Add Mega Menu</a></li>
+          <li <?php if(preg_match("/view-women-mega-menu/i", $url)){ ?> class="active" <?php } ?>>
+            <a href="{{url ('/admin/view-women-mega-menu')}}">View Mega Menu</a></li>
         </ul>
       </li>
       <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Products</span> <span class="label label-important">2</span></a>
@@ -88,6 +96,16 @@
 <ul <?php if(preg_match("/view-promotion-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
           <li <?php if(preg_match("/view-promotion-menu/i", $url)){ ?> class="active" <?php } ?>>
             <a href="{{url ('/admin/view-promotion-menu')}}">View Promotion</a></li>
+        </ul>
+      </li>
+     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Pages </span> <span class="label label-important">2</span></a>
+        <ul <?php if(preg_match("/pages/i", $url)){ ?> style="display:block;" <?php } ?>>
+          <li <?php if(preg_match("/add-pages/i", $url)){ ?> class="active" <?php } ?>>
+            <a href="{{url ('/admin/add-pages')}}">Add Page</a></li>
+        </ul>
+<ul <?php if(preg_match("/view-promotion-menu/i", $url)){ ?> style="display:block;" <?php } ?>>
+          <li <?php if(preg_match("/view-pages/i", $url)){ ?> class="active" <?php } ?>>
+            <a href="{{url ('/admin/view-pages')}}">View Pages</a></li>
         </ul>
       </li>
     </ul>

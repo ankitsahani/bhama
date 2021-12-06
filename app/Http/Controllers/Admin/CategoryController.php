@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Category;
 use App\MegaMenues;
+use App\WomenMegaMenu;
 use Image;
 
 class CategoryController extends Controller
@@ -151,6 +152,71 @@ class CategoryController extends Controller
     public function deleteMegamenu($id=null){
             if(!empty($id)){
                 MegaMenues::where(['id'=>$id])->delete();
+                return redirect()->back()->with('flash_message_error','Mega Menu deleted Successfully!!!');
+
+            }
+    }
+     //function for add mega menues
+    public function addWomenMegamenu(Request $request){
+        if($request->isMethod('post')){
+           $data = $request->all();
+         // echo "<pre>"; print_r($data); die;
+           
+           $category = new WomenMegaMenu;
+           $category->name = $data['name'];
+           $category->parent_id = $data['parent_id'];
+           $category->description = $data['description'];
+            //upload mega_menu image code
+           $category->save();
+           //categories drop down end
+           return redirect('/admin/view-women-mega-menu')->with('flash_message_success','Mega Menu Added Successfully!!!');
+        }
+        $categories = WomenMegaMenu::where(['parent_id'=>0])->get();
+        $levels = "<option value='0' selected >Main Women Mega Menu</option>";
+        foreach($categories as $cat){
+            $levels .= "<option value='".$cat->id."'>".$cat->name."</option>";
+        //code for showing subcategories in main category
+            $sub_categories = WomenMegaMenu::where(['parent_id'=>$cat->id])->get();
+            foreach($sub_categories as $sub_cat){
+                $levels .= "<option value = '".$sub_cat->id."'>&nbsp;--&nbsp;".$sub_cat->name."</option>";
+            }
+        }
+        //dd($levels);
+        //code for adding sub mega_menu of parent category
+        //$levels = MegaMenues::where(['parent_id'=>0])->get();
+        return view('admin.mega-menu.add_women_mega_menu')->with(compact('levels'));
+    }
+    //function for view women_mega_menu
+    public function viewWomenMegamenu(){
+        //Dynamically Display Categories From Database
+        $megamenues = WomenMegaMenu::get();
+           return view('admin.mega-menu.view_women_mega_menu')->with(compact('megamenues'));
+    }
+    //function for edit category
+    public function editWomenMegamenu(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            WomenMegaMenu::where(['id'=>$id])->update(['name'=>$data['menu_name'],'description'=>$data['description']]);
+            return redirect('/admin/view-women-mega-menu')->with('flash_message_success','Mega Menu Updated Successfully!!!');
+        }
+        $megamenuDetails = WomenMegaMenu::where(['id'=>$id])->first();
+         $categories = WomenMegaMenu::where(['parent_id'=>0])->get();
+        $levels = "<option value='' selected disabled>Main Mega Menu</option>";
+        foreach($categories as $cat){
+            $levels .= "<option value='".$cat->id."'>".$cat->name."</option>";
+        //code for showing subcategories in main category
+            $sub_categories = WomenMegaMenu::where(['parent_id'=>$cat->id])->get();
+            foreach($sub_categories as $sub_cat){
+                $levels .= "<option value = '".$sub_cat->id."'>&nbsp;--&nbsp;".$sub_cat->name."</option>";
+            }
+        }
+        return view('admin.mega-menu.edit_women_mega_menu')->with(compact('megamenuDetails','levels'));
+    }
+    //function for delete megamenu
+    public function deleteWomenMegamenu($id=null){
+            if(!empty($id)){
+                WomenMegaMenu::where(['id'=>$id])->delete();
                 return redirect()->back()->with('flash_message_error','Mega Menu deleted Successfully!!!');
 
             }
