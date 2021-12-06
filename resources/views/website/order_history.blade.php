@@ -21,16 +21,18 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach( $orders as $key=>$order)
+					    @if(!empty($orders))		
+						@foreach($orders as $key=>$order)
 						<tr>
 							<td>{{$key+1}}</td>
-							<td><b>{{$order->order_number}}</b> <a href="invoice.html" class="ml-1">View Details</a></td>
+							<td><b>{{$order->order_number}}</b> <a href="{{route('invoice-history')}}" class="ml-1">View Details</a></td>
 							<td>{{date('d.m.Y',strtotime($order->created_at))}}</td>
 							<td>{{$order->order_status}}</td>
 							<td><span class="color">₹{{$order->grand_total}}</span></td>
 							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
 						</tr>
 						@endforeach
+						@endif
 						</tbody>
 					</table>
 				</div>
