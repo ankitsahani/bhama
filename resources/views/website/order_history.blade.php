@@ -21,67 +21,23 @@
 						</tr>
 						</thead>
 						<tbody>
+					    @if(!empty($orders))		
+						@foreach($orders as $key=>$order)
 						<tr>
-							<td>1</td>
-							<td><b>175525</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>01.02.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹1252.00</span></td>
+							<td>{{$key+1}}</td>
+							<td><b>{{$order->order_number}}</b> <a href="{{route('invoice-history')}}" class="ml-1">View Details</a></td>
+							<td>{{date('d.m.Y',strtotime($order->created_at))}}</td>
+							<td>{{$order->order_status}}</td>
+							<td><span class="color">₹{{$order->grand_total}}</span></td>
 							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td><b>189067</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>12.02.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹367.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td><b>186543</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>03.04.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹587.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td><b>209876</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>05.06.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹3654.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td><b>215879</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>06.07.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹258.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td><b>229876</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>12.08.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹314.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
-						<tr>
-							<td>7</td>
-							<td><b>268745</b> <a href="invoice.html" class="ml-1">View Details</a></td>
-							<td>01.09.2017</td>
-							<td>Shipped</td>
-							<td><span class="color">₹522.00</span></td>
-							<td><a href="#" class="btn btn--grey btn--sm">REORDER</a></td>
-						</tr>
+						@endforeach
+						@endif
 						</tbody>
 					</table>
 				</div>
 				<div class="text-right mt-2">
-					<a href="#" class="btn btn--alt">Clear History</a>
+					<a href="{{route('clear-order-history')}}" class="btn btn--alt">Clear History</a>
 				</div>
 			</div>
 		</div>

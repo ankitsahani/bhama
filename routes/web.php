@@ -143,6 +143,10 @@ Route::middleware([frontmiddleware::class])->group(function () {
     Route::match(['get','post'],'remove-from-cart','Website\CartController@removeCart')->name('remove.from.cart');
 
     Route::match(['get','post'],'order-history','Website\OrderController@orderHistory')->name('order-history');
+    Route::match(['get','post'],'invoice-history','Website\OrderController@invoiceHistory')->name('invoice-history');
+   
+    Route::match(['get','post'],'clear-order-history','Website\OrderController@clearOrderHistory')->name('clear-order-history');
+   
     Route::post('paysuccess', 'Website\RazorpayController@razorPaySuccess')->name('paysuccess');
     Route::match(['get','post'],'razor-thank-you', 'Website\RazorpayController@RazorThankYou')->name('razor-thank-you');
  });
