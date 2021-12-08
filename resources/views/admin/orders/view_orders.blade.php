@@ -39,11 +39,10 @@
                 <th>Order Date</th>
                 <th>Customer Name</th>
                 <th>Customer Email</th>
-                <th>Ordered Product</th>
-                <th>Order Quantity</th>
+               
+                
                 <th>Order Amount</th>
                 <th>Order Status</th>
-                <th>Payment Method</th>
                 <th>Actions</th>
                 </tr>
             </thead>
@@ -54,8 +53,8 @@
                 <td>{{ $order->created_at }}</td>
                 <td>{{ $order->name }}</td>
                 <td>{{ $order->email }}</td>
-                <td>{{ $order->product_name }}</td>
-                <td>{{ $order->qty }} </td>
+                
+               
                 <td>{{ $order->grand_total }}</td>
                 <td>{{ $order->order_status }}</td>
                 <td class="center">

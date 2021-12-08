@@ -662,9 +662,8 @@ class ProductsController extends Controller
     }
     public function viewOrders(){
         $orders = Order::leftjoin('users','users.id','=','orders.user_id')
-                        ->leftjoin('products','orders.product_id','=','products.id')
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
-                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode','products.product_name')
+                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->get();
        // $orders = json_decode(json_encode($orders));
         //echo "<pre>";print_r($orders);die;
@@ -672,9 +671,9 @@ class ProductsController extends Controller
     }
     public function viewOrderDetails($order_id){
         $orderDetails = Order::leftjoin('users','users.id','=','orders.user_id')
-                        ->leftjoin('products','orders.product_id','=','products.id')
+                            
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
-                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode','products.product_name')
+                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->where('orders.id',$order_id)->first();
         //echo "<pre>"; print_r($orderDetails);die;
         return view('admin.orders.order_details')->with(compact('orderDetails'));
