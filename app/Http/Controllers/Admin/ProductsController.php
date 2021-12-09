@@ -613,7 +613,10 @@ class ProductsController extends Controller
     }
     public function viewOrders(){
         $orders = Order::leftjoin('users','users.id','=','orders.user_id')
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 4569e9f1ce019d06b67b51b9f9a994cf2f167a94
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
                         ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->get();
@@ -624,7 +627,11 @@ class ProductsController extends Controller
     public function viewOrderDetails($order_id){
         
         $orderDetails = Order::leftjoin('users','users.id','=','orders.user_id')
+<<<<<<< HEAD
                        
+=======
+                            
+>>>>>>> 4569e9f1ce019d06b67b51b9f9a994cf2f167a94
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
                         ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->where('orders.id',$order_id)->first();
