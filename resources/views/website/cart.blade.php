@@ -29,7 +29,7 @@
 						
 						<div class="cart-table-prd">
 							<div class="cart-table-prd-image">
-								<a href="product.html" class="prd-img"> <img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$carts->options->image)}}" alt=""> </a>
+								<a href="javascript:void(0)" class="prd-img"> <img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$carts->options->image)}}" alt=""> </a>
 							</div>
 							<div class="cart-table-prd-content-wrap">
 								<div class="cart-table-prd-info">
@@ -37,12 +37,13 @@
 										<div class="price-old">${{$carts->options->selling_price}}</div>
 										<div class="price-new">${{$carts->price}}</div>
 									</div>
-									<h2 class="cart-table-prd-name"><a href="product.html">{{$carts->product_name}}</a></h2> </div>
+									<h2 class="cart-table-prd-name"><a href="javascript:void(0)">{{$carts->product_name}}</a></h2> </div>
 								<div class="cart-table-prd-qty">
 									<div class="qty qty-changer">
-										<button class="decrease"></button>
-										<input type="text" name="qty" class="qty-input" value="{{$carts->qty}}" data-min="0" data-max="1000">
-										<button class="increase"></button>
+										{{csrf_field()}}
+										<button class="decrease" onclick="decrementValue('{{ $carts->rowId }}');"></button>
+										<input type="text" id="qty{{ $carts->rowId }}" name="qty" class="qty-input" value="{{$carts->qty}}" data-min="0" data-max="1000">
+										<button  class="increase" onclick="incrementValue('{{ $carts->rowId }}');" ></button>
 									</div>
 								</div>
 								<div class="cart-table-prd-price-total">${{$carts->qty*$carts->price}}</div>
@@ -143,8 +144,12 @@
 						</div>
 					</div>
 					<div class="card-total">
-						
+					<!-- <div class="text-right">
+								<button onclick="return updateCart('{{ $carts->rowId }}');" class="btn btn--grey"><span>UPDATE CART</span><i class="icon-refresh"></i>
+								</button>
+							</div> -->
 						<div class="row d-flex">
+							
 							<div class="col card-total-txt">Total</div>
 							<div class="col-auto card-total-price text-right" >$ {{\Cart::priceTotal()}}</div>
 						</div>
@@ -215,10 +220,13 @@
 							<div id="collapse2" class="panel-collapse collapse show">
 								<div class="panel-body">
 									<p>Got a promo code? Then you're a few randomly combined numbers & letters away from fab savings!</p>
-									<div class="form-inline mt-2">
-										<input type="text" class="form-control form-control--sm" placeholder="Promotion/Discount Code">
-										<button type="submit" class="btn">Apply</button>
-									</div>
+									<form action="{{route('apply.coupon')}}" method="post">
+										@csrf
+										<div class="form-inline mt-2">
+											<input type="text" class="form-control form-control--sm" name="coupon_code" placeholder="Promotion/Discount Code">
+											<button type="submit" class="btn">Apply</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -292,30 +300,76 @@ function payment(){
 	rzp1.open();
 	e.preventDefault();
 }
-</script>
-<script>
-function removeCart()
+function updateCart(update_id)
 {
-	var update_id=$('#update_id').val();
+	alert(updated_id);
+	var quantity = $('#qty'+update_id).val();
+	
 	var _token = $('input[name="_token"]').val();
-	$.ajax({
-	url:"{{ route('remove.from.cart') }}",
-	method:"POST",
-	data:{update_id:update_id, _token:_token},
-	dataType: "json",
-	success:function(data)
-	{
-		//console.log(data.cartData);
-		jQuery(".update_cart").html(data.cartData);
+ $.ajax({
+  url:"{{ route('update.cart') }}",
+  method:"POST",
+  data:{quantity:quantity,update_id:update_id, _token:_token},
+  dataType: "json",
+  success:function(data)
+  {
+  // $('#qty').append(data.cartData.qty);
+   $('.update_cart').html(data.html);
+  //console.log(data.cartData.qty);
+   $("#message").text(data.message).css("color", "green");
+  }
+ });
+}
+function incrementValue(update_id)
+{   var value = $('#qty'+update_id).val();
+//alert(value);
+    //var value = parseInt(document.getElementById('qty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('qty'+update_id).value = value;
+	var _token = $('input[name="_token"]').val();
+ $.ajax({
+  url:"{{ route('update.cart') }}",
+  method:"POST",
+  data:{quantity:value,update_id:update_id, _token:_token},
+  dataType: "json",
+  success:function(data)
+  {
+  // $('#qty').append(data.cartData.qty);
+  		jQuery(".update_cart").html(data.cartData);
 		$('.minicart-total').html(data.price);
 		$('.minicart-qty').html(data.count);
-		$("#message").text(data.message).css("color", "red").delay(5000).fadeOut();
-
+		location.reload();
+   		$("#message").text(data.message).css("color", "green");
+  }
+ });
+}
+function decrementValue(update_id){
+	var value = $('#qty'+update_id).val();
+	//alert(value);
+	//var value = parseInt(document.getElementById('qty').value, 10);
+    value = isNaN(value) ? 0 : value;
+	if(value==0){
+		value=0;
+	}else{
+		value--;
 	}
-	});
+  
+    document.getElementById('qty'+update_id).value = value;
+	var _token = $('input[name="_token"]').val();
+ $.ajax({
+  url:"{{ route('update.cart') }}",
+  method:"POST",
+  data:{quantity:value,update_id:update_id, _token:_token},
+  dataType: "json",
+  success:function(data)
+  {
+  // $('#qty').append(data.cartData.qty);
+  		jQuery(".update_cart").html(data.html);
+		$('.minicart-total').html(data.price);
+		$('.minicart-qty').html(data.count);
+   		$("#message").text(data.message).css("color", "green");
+  }
+ });
 }
 </script>
-
-
-
-

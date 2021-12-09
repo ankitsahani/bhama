@@ -27,7 +27,8 @@ $womenmegamenu = Helper::getWomenMegaMenu();
 							</div>
 							<div class="dropdn dropdn_wishlist">
 								@php 
-								$totalwishlist=App\Wishlist::where('status',1)->count();
+								$user_id = Auth::user()->id;
+								$totalwishlist=App\Wishlist::where(['status'=>1,'user_id'=>$user_id])->count();
 								@endphp
 								<a href="{{route('wishlist')}}" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">{{$totalwishlist}}</span> </a>
 							</div>
@@ -244,3 +245,26 @@ $womenmegamenu = Helper::getWomenMegaMenu();
 				</div>
 			</div>
 		</div>
+		<script>
+function removeCart()
+{
+	var update_id=$('#update_id').val();
+	var _token = $('input[name="_token"]').val();
+	$.ajax({
+	url:"{{ route('remove.from.cart') }}",
+	method:"POST",
+	data:{update_id:update_id, _token:_token},
+	dataType: "json",
+	success:function(data)
+	{
+		console.log(data.cartData1);
+		jQuery(".update_cart").html(data.cartData);
+		$('.minicart-total').html(data.price);
+		$('.minicart-qty').html(data.count);
+		location.reload();
+		$("#message").text(data.message).css("color", "red").delay(5000).fadeOut();;
+
+	}
+	});
+}
+</script>

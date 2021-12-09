@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-4 aside aside--left">
 			
-				  @include('website.user.sidebar');
+				  @include('website.user.sidebar')
 			
 			</div>
 			<div class="col-md-14 aside">

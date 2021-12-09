@@ -43,7 +43,7 @@
                 <th>Order Quantity</th>
                 <th>Order Amount</th>
                 <th>Order Status</th>
-                <th>Payment Method</th>
+               
                 <th>Actions</th>
                 </tr>
             </thead>

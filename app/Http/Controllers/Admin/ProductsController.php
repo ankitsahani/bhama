@@ -367,7 +367,7 @@ class ProductsController extends Controller
     }
     public function getProductPrize(Request $request){
         $data = $request->all();
-    // echo "<pre>";print_r($data);die;
+        // echo "<pre>";print_r($data);die;
         $proArr = explode("-",$data['idSize']);
         $proAttr = ProductsAttribute::where(['product_id' => $proArr[0],'size' => $proArr[1]])->first();
         echo $proAttr->price;
@@ -444,56 +444,7 @@ class ProductsController extends Controller
         return redirect('cart')->with('flash_message_error','Required Product Quantity is not Available');  
         }
     }
-    public function ApplyCoupon(Request $request){
-        Session::forget('CouponAmount');
-        Session::forget('CouponCode');
-        $data = $request->all();
-       // echo"<pre>";print_r($data);die;
-       $couponCount = Coupon::where('coupon_code',$data['coupon_code'])->count();
-       if($couponCount == 0){
-           return redirect()->back()->with('flash_message_error','Coupon does not Exists!');
-       }else{
-           //perform other actions like active,inactive or expiry date
-
-           //Get Coupon Details
-           $couponDetails = Coupon::where('coupon_code',$data['coupon_code'])->first();
-           //if coupon is valid
-           if($couponDetails->status== 0){
-             return redirect()->back()->with('flash_message_error','This Coupon is not active!');
-           }
-           //if coupon is expired
-           $expiry_date = $couponDetails->expiry_date;
-           $current_date = date('Y-m-d');
-        if($expiry_date < $current_date){
-            return redirect()->back()->with('flash_message_error','This Coupon is Expired!');
-        }
-           //Coupon is valid for Discount
-           //Get Cart total amount
-           $session_id =Session::get('session_id');
-           if(Auth::check()){
-            $user_email = Auth::user()->email;
-            $userCart = DB::table('cart')->where(['user_email'=>$user_email])->get();
-            }else{
-            $session_id = Session::get('session_id');
-            $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
-            }
-           $total_amount = 0;
-           foreach($userCart as $item){
-            $total_amount = $total_amount + ($item->price * $item->quantity);
-        }
-           //Check if amount type is fixed or percentage
-           if($couponDetails->amount_type=="Fixed"){
-               $couponAmount = $couponDetails->amount;
-           }else{
-               $couponAmount = $total_amount * ($couponDetails->amount/100);
-           }
-            //Add coupon Code & Amount in session
-            Session::put('CouponAmount',$couponAmount);
-            Session::put('CouponCode',$data['coupon_code']);
-            return redirect()->back()->with('flash_message_success','Coupon Code is successfully
-            applied.You are availing discount!');
-       }
-    }
+   
     public function checkout(Request $request){
         $user_id = Auth::user()->id;
         $user_email = Auth::user()->email;
@@ -662,21 +613,22 @@ class ProductsController extends Controller
     }
     public function viewOrders(){
         $orders = Order::leftjoin('users','users.id','=','orders.user_id')
-                        ->leftjoin('products','orders.product_id','=','products.id')
+                        
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
-                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode','products.product_name')
+                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->get();
        // $orders = json_decode(json_encode($orders));
         //echo "<pre>";print_r($orders);die;
         return view('admin.orders.view_orders')->with(compact('orders'));
     }
     public function viewOrderDetails($order_id){
+        
         $orderDetails = Order::leftjoin('users','users.id','=','orders.user_id')
-                        ->leftjoin('products','orders.product_id','=','products.id')
+                       
                         ->leftjoin('addresses','addresses.user_id','=','users.id')
-                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode','products.product_name')
+                        ->select('orders.*','users.name','users.email','users.mobile','addresses.address','addresses.country','addresses.state','addresses.city','addresses.pincode')
                         ->where('addresses.default',1)->where('orders.id',$order_id)->first();
-        //echo "<pre>"; print_r($orderDetails);die;
+    
         return view('admin.orders.order_details')->with(compact('orderDetails'));
     }
      public function updateOrderStatus(Request $request){
