@@ -339,6 +339,7 @@ function incrementValue(update_id)
         jQuery(".cartData").html(data.html);
 		$('.minicart-total').html(data.price);
 		$('.minicart-qty').html(data.count);
+		
    		$("#message").text(data.message).css("color", "green");
   }
  });
