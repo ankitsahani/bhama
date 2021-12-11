@@ -149,7 +149,7 @@
 											<i class="icon-eye"></i>
 											<span>QUICK VIEW</span>
 										</a> 
-										</div>
+									</div>
 									<ul class="list-options color-swatch">
 										@php 
 										$productImages=App\ProductsImage::where('product_id',$row->id)->take(2)->get();

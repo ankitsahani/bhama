@@ -1,6 +1,8 @@
 @php
 $menmegamenu = Helper::getMenMegaMenu();
 $womenmegamenu = Helper::getWomenMegaMenu();
+$categories = Helper::getCategory();
+
 @endphp
 <div class="hdr-content hdr-content-sticky">
 			<div class="container">
@@ -101,13 +103,11 @@ $womenmegamenu = Helper::getWomenMegaMenu();
 											<li><a href="{{route('product.listing')}}">Product page</a>
 												<ul> </ul>
 											</li>
-											<li><a href="category.html">Category page</a>
+											<li><a href="{{route('categories')}}">Category page</a>
 												<ul>
-													<li><a href="category.html">Left sidebar filters</a></li>
-													<li><a href="category-closed-filter.html">Closed filters</a></li>
-													<li><a href="category-horizontal-filter.html">Horizontal filters</a></li>
-													<li><a href="category-listview.html">Listing View</a></li>
-													<li><a href="category-empty.html">Empty category</a></li>
+                                                    @foreach($categories as $c)
+													<li><a href="{{$c->url}}">{{$c->Name}}</a></li>
+													@endforeach
 												</ul>
 											</li>
 											<li><a href="cart.html">Cart & Checkout</a>

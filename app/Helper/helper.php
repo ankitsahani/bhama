@@ -9,6 +9,8 @@ use App\User;
 use App\FooterPages;
 use App\MegaMenues;
 use App\WomenMegaMenu;
+use App\Category;
+use App\Invoice;
 use Exception;
 
 class Helper
@@ -57,4 +59,14 @@ class Helper
       $womenmega = WomenMegaMenu::where('parent_id',0)->get();
       return $womenmega;
     }
+     public static function getCategory(){
+      $categories = Category::all();
+      return $categories;
+    }
+    public static function getPurchaseProduct(){
+      $product = Invoice::leftjoin('products','products.id','=','invoices.product_id')
+      ->select('products.*','invoices.created_at as created')->latest()->first();
+      return $product;
+    }
+    
  }

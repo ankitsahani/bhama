@@ -5,7 +5,7 @@
 		<div class="container">
 			<ul class="breadcrumbs">
 				<li><a href="{{route('index')}}">Home</a></li>
-				<li><a href="category.html">Women</a></li>
+				<li><a href="{{route('categories')}}">Women</a></li>
 				<li><span>Leather Pegged Pants</span></li>
 			</ul>
 		</div>
@@ -382,39 +382,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-8">
-				<div style="float: left;" class="prd-rating justify-content-center p-1 m-1"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>300 Reviews</div>
+				<div style="float: left;" class="prd-rating justify-content-center p-1 m-1"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>{{$reviewcount}} @if($reviewcount<2)Review @else Reviews @endif</div>
 			</div>
 			<div class="col-10" style="float: right;">
-				<div class="p-1 m-1"> <a href="#" style="float: right;" class="btn btn-dark">Write a Review</a> </div>
+				<div class="p-1 m-1"> <button type="button" class="btn btn-dark" style="float: right;" data-toggle="modal" data-target=".bd-example-modal-xl">
+	Write a Review
+  </button> </div>
 			</div>
 		</div>
 		<div class="row justify-content-center">
+			@foreach($review as $s)
 			<div class="card review-item">
-				<div class="card-body"> <img class="img-fluid" src="images/skins/fashion/product-page/product-01.webp" alt="">
-					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">Anushka G<br></span> <span style="font-size: 11px;">11/09/2021</span> <span class="prd-rating justify-content-left"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span> <span style="font-size: 13px;">It's such an adorable dress ❤</span></p>
+				<div class="card-body"> <img class="img-fluid" src="{{asset('images/backend_img/review/'.$s->image)}}" alt="">
+					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">{{$s->name}}<br></span> <span style="font-size: 11px;">{{date('M d,Y',strtotime($s->created_at))}}</span> <span class="prd-rating justify-content-left">
+						@if($s->review == '5')
+						<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+						@endif
+						@if($s->review == '4')
+						<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+						@endif
+						@if($s->review == '3')
+						<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+						@endif
+						@if($s->review == '2')
+						<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
+						@endif
+						@if($s->review == '1')
+						<i class="icon-star-fill fill"></i>
+						@endif
+					</span> <span style="font-size: 13px;">{{$s->description}}</span></p>
 				</div>
 			</div>
-			<div class="card review-item">
-				<div class="card-body"> <img class="img-fluid" src="images/skins/fashion/product-page/product-01.webp" alt="">
-					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">Divya N.<br></span> <span style="font-size: 11px;">17/12/2021</span> <span class="prd-rating "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span> <span style="font-size: 13px;"> The best purchase for the best price, bhama is never gonna disappoint you.. a must buy ♥️♥️🥺🥺</span></p>
-				</div>
-			</div>
-			<div class="card review-item">
-				<div class="card-body"> <img class="img-fluid" src="images/skins/fashion/product-page/product-01.webp" alt="">
-					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">Kirti K.<br></span> <span style="font-size: 11px;">17/12/2021</span> <span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span> <span style="font-size: 13px;">Totally in love with the dress, color, and the fall. Got so many complements for this one. Suits almost all body types. Great design and fit.</span></p>
-				</div>
-			</div>
-			<div class="card review-item">
-				<div class="card-body"> <img class="img-fluid" src="images/skins/fashion/product-page/product-01.webp" alt="">
-					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">Leena B.<br></span> <span style="font-size: 11px;">17/12/2021</span> <span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span> <span style="font-size: 13px;"> Beautiful dress,  loved it.</span></p>
-				</div>
-			</div>
-			<div class="card review-item">
-				<div class="card-body"> <img class="img-fluid" src="images/skins/fashion/product-page/product-01.webp" alt="">
-					<p> <span class="text-center" style="font-size: 14px; font-weight: bold;">San P.<br></span> <span style="font-size: 11px;">17/12/2021</span> <span class="prd-rating "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span> <span style="font-size: 13px;">Lovely dress just that it needs
-Little alteration near neck. Love this brand ❤️t</span></p>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 	<div class="holder">
@@ -425,85 +424,91 @@ Little alteration near neck. Love this brand ❤️t</span></p>
 			</div>
 			<div class="prd-grid prd-carousel js-prd-carousel slick-arrows-aside-simple slick-arrows-mobile-lg data-to-show-4 data-to-show-md-3 data-to-show-sm-3 data-to-show-xs-2" data-slick='{"slidesToShow": 4, "slidesToScroll": 2, "responsive": [{"breakpoint": 992,"settings": {"slidesToShow": 3, "slidesToScroll": 1}},{"breakpoint": 768,"settings": {"slidesToShow": 2, "slidesToScroll": 1}},{"breakpoint": 480,"settings": {"slidesToShow": 2, "slidesToScroll": 1}}]}'>
 				
-				<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
-					<div class="prd-inside">
-						<div class="prd-img-area">
-							<a href="product.html" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" alt="Midi Dress with Belt" class="js-prd-img lazyload fade-up">
-								<div class="bhama-loader"></div>
-								<div class="prd-big-squared-labels"> </div>
-							</a>
-							<div class="prd-circle-labels"> <a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a> <a href="#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a>
-								<div class="colorswatch-label colorswatch-label--variants js-prd-colorswatch"> <i class="icon-palette"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></i>
-									<ul>
-										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-grey.html')}}" alt=""></a>
-										</li>
-										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-color-2.webp')}}">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-green.html')}}" alt=""></a>
-										</li>
-										<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-color-3.webp')}}">
-											<a class="js-color-toggle" data-toggle="tooltip" data-placement="left" title="Color Name"><img src="{{asset('website_assets/images/colorswatch/color-black.html')}}" alt=""></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<ul class="list-options color-swatch">
-								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" class="active">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-1.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-2.webp')}}">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-2.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-								<li data-image="{{asset('website_assets/images/skins/fashion/products/product-06-3.webp')}}">
-									<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('website_assets/images/skins/fashion/products/product-06-3.webp')}}" class="lazyload fade-up" alt="Color Name"></a>
-								</li>
-							</ul>
-						</div>
-						<div class="prd-info">
-							<div class="prd-info-wrap">
-								<h2 class="prd-title"><a href="product.html">Midi Dress with Belt</a></h2>
-								<div class="prd-info-top">
-									<div class="prd-rating"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
-								</div>
-								<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-									<div style="color:#ee7db6af;">(17)</div>
-								</div>
-								<!--<div class="prd-tag"><a href="#">Seiko</a></div>-->
-								<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
-								<div class="prd-action">
-									<form action="#">
-										<button class="btn js-prd-addtocart" data-product='{"name": "Midi Dress with Belt", "path":"images/skins/fashion/products/product-06-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-									</form>
-								</div>
-							</div>
-							<div class="prd-hovers">
-								<div class="prd-circle-labels">
-									<div><a href="#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a></div>
-									<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
-								</div>
-								<div class="prd-price">
-									<div class="price-new">₹ 180</div>
-									<div class="price-old" style="color:#ee7db6af;">₹ 200</div>
-								</div>
-								<!--<div class="prd-price">-->
-								<!--	<div class="price-new">₹ 180</div>-->
-								<!--</div>-->
-								<div class="prd-action">
-									<div class="prd-action-left">
-										<form action="#">
-											<button class="btn js-prd-addtocart" data-product='{"name": "Midi Dress with Belt", "path":"images/skins/fashion/products/product-06-1.webp", "url":"product.html", "aspect_ratio":0.778}'>Add To Cart</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				@include('website.you_may_like')
 			
 			</div>
 		</div>
 	</div>
 </div>
+
+ <!-- Modal Box for write review section-->
+<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+ 
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content bg-light">
+		<div class="modal-body">
+			<div class="card review-section">
+				
+			<div class="container">
+			<div class="card mx-auto m-0" >
+							
+						<h2 class="text-center">Write Review</h2>
+							<div class="card-body">
+								<form action="{{route('add-review')}}" method="post" enctype="multipart/form-data">
+									@csrf
+									<div class="row ">
+									<div class=" col-md-6">
+										<div class="card mx-auto">
+											<input type="hidden" name="product_id" value="{{$productDetails->id}}">
+											<h2 class="text-center">Choose Stars</h2>
+											<div class="custom-control custom-radio p-2 m-1">
+												<input type="radio" id="customRadio" name="customRadio" value="5" class="custom-control-input" checked>
+												<label class="custom-control-label" for="customRadio1"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span>
+												</label>
+											  </div>
+											  <div class="custom-control custom-radio p-2 m-1">
+												<input type="radio" id="customRadio" name="customRadio" value="4"  class="custom-control-input">
+												<label class="custom-control-label" for="customRadio"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i></span>
+												</label>
+											  </div>
+											  <div class="custom-control custom-radio p-2 m-1">
+												<input type="radio" id="customRadio" name="customRadio" value="3" class="custom-control-input">
+												<label class="custom-control-label" for="customRadio3"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+												</label></div>
+											  <div class="custom-control custom-radio p-2 m-1">
+												<input type="radio" value="2"  id="customRadio" name="customRadio" class="custom-control-input">
+												<label class="custom-control-label" for="customRadio"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+												</label>
+											  </div>
+											  <div class="custom-control custom-radio p-2 m-1">
+												<input type="radio" value="1"  id="customRadio" name="customRadio" class="custom-control-input">
+												<label class="custom-control-label" for="customRadio5"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+												</label>
+											  </div>
+										</div>
+									</div>
+									<div class="col-md-10 p-0 mx-auto">
+									<div class="form-group">
+									  <label for="exampleInputEmail1">Review Title</label>
+									  <input type="text" name="review_title" class="form-control" placeholder="Review Title">   
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Review</label>
+										<input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Write Your Review here">
+									</div>
+									
+									<div class="form-group">
+										<label for="exampleInputPassword1">Upload Image</label>
+										<input type="file" class="form-control" id="exampleInputPassword1" name="image" placeholder="">
+									</div>
+									<button type="submit" class="btn btn-primary">Submit</button>
+									</div>
+									</div>
+								  </form>
+							</div>
+					
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- <div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div> -->
+	  </div>
+	</div>
+  </div> 
+		        <!-- Modal Box end -->
 @endsection
 <script>
 	function addToCart(id){

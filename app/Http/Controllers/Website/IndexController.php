@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Image;
 use App\Product;
 use App\MegaMenues;
 use App\Category;
@@ -14,8 +16,10 @@ use App\Coupon;
 use App\HomeMenu;
 use App\User;
 use App\Gallery;
+use App\YouMayLike;
 use Auth;
 use App\Address;
+use App\Review;
 use App\Wishlist;
 use Session;
  use Cache;
@@ -26,12 +30,12 @@ class IndexController extends Controller
         $categories=Category::select("*")
                         ->where("Parent_id", "=", 0)
                         ->get();
-        $menu1 = HomeMenu::where("menu_position", "=", 1)->get()->toArray();;
-        $menu2 = HomeMenu::where("menu_position", "=", 2)->get()->toArray();;
-        $menu3 = HomeMenu::where("menu_position", "=", 3)->get()->toArray();;
-        $menu4 = HomeMenu::where("menu_position", "=", 4)->get()->toArray();;
-        $menu5 = HomeMenu::where("menu_position", "=", 5)->get()->toArray();;
-       $gallery = Gallery::all();
+        $menu1 = HomeMenu::where("menu_position", "=", 1)->get()->toArray();
+        $menu2 = HomeMenu::where("menu_position", "=", 2)->get()->toArray();
+        $menu3 = HomeMenu::where("menu_position", "=", 3)->get()->toArray();
+        $menu4 = HomeMenu::where("menu_position", "=", 4)->get()->toArray();
+        $menu5 = HomeMenu::where("menu_position", "=", 5)->get()->toArray();
+        $gallery = Gallery::all();
        // print_r($menu5[0]['image']);die;
         return view('website.index',compact('categories','menu1','menu2','menu3','menu4','menu5','gallery'));
     }
@@ -43,9 +47,12 @@ class IndexController extends Controller
     }
     
     public function productSingle(Request $request,$id){
+
         $productDetails = Product::with('attributes')->where('id',$id)->first();
         $couponDetails = Coupon::all();
-        $categoryProduct = Product::where('category_id',$productDetails->category_id)->take(3)->get();
+        $reviewcount = Review::count();
+        $review = Review::leftjoin('users','users.id', '=', 'product_reviews.user_id')->get();
+        $categoryProduct = Product::where('category_id',$productDetails->category_id)->take(5)->get();
         $productDetails = json_decode(json_encode($productDetails));
         // echo "<pre>";print_r($productDetails);die;
          //Related Products Code
@@ -70,9 +77,8 @@ class IndexController extends Controller
           
         $total_stock = ProductsAttribute:: where('product_id',$id)->sum('stock');
 
-       
     
-        return view('website.single_product',compact('productDetails','categories','productAltimages','total_stock','relatedProducts','categoryProduct','couponDetails'));
+        return view('website.single_product',compact('productDetails','categories','productAltimages','total_stock','relatedProducts','categoryProduct','couponDetails','review','reviewcount'));
     }
 
     public function mega_menues(){
@@ -182,6 +188,46 @@ class IndexController extends Controller
         Session::flush();
         Cache::flush();
         return redirect('/product-listing');
+    }
+     public function categories(){
+        $categories = Category::where('parent_id',0)->get();
+        $product=Product::all();
+        $productCount=Product::count();
+        return view('website.category',compact('categories','product','productCount'));
+    }
+    public function addReview(Request $request){
+
+      if($request->isMethod('post')){
+        if(Auth::user()){
+       $data = $request->all();
+
+       $review = new Review;
+       $user_id=Auth::user()->id;
+       $review->review = $data['customRadio'];
+       $review->product_id = $data['product_id'];
+       $review->user_id = $user_id;
+       $review->description = $data['description'];
+        //upload categories image code
+        if($request->hasfile('image')){
+            echo $image_tmp = $request->file('image');
+            if($image_tmp->isValid()){
+            //Image File Pat code
+            $extension = $image_tmp->getClientOriginalExtension();
+            $filename = rand(111,99999).'.'.$extension;
+            $large_image_path = 'images/backend_img/review/'.$filename;
+            //image resize code
+            Image::make($image_tmp)->save($large_image_path);
+            //Store img name in categories table
+            $review->user_img = $filename; 
+            }
+        }
+        
+       $review->save();
+       return redirect()->back();
+     }
+ }else{
+    return redirect()->back();
+ }
     }
   
 }

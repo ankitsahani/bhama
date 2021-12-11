@@ -119,6 +119,7 @@ Route::match(['get','post'],'/user-login', 'Website\IndexController@userLogin')-
 
 Route::match(['get','post'],'/product-listing', 'Website\IndexController@productListing')->name('product.listing');
 Route::match(['get','post'],'/aboutus', 'Website\StaticController@aboutUs')->name('about.us');
+Route::match(['get','post'],'/category', 'Website\IndexController@categories')->name('categories');
 Route::match(['get','post'],'/contactus', 'Website\StaticController@contactUs')->name('contact.us');
 Route::match(['get','post'],'/single-product/{id}', 'Website\IndexController@productSingle')->name('product.single');
 
@@ -149,6 +150,8 @@ Route::middleware([frontmiddleware::class])->group(function () {
    
     Route::post('paysuccess', 'Website\RazorpayController@razorPaySuccess')->name('paysuccess');
     Route::match(['get','post'],'razor-thank-you', 'Website\RazorpayController@RazorThankYou')->name('razor-thank-you');
+
+    Route::match(['get','post'],'/add-review', 'Website\IndexController@addReview')->name('add-review');
  });
 
  
