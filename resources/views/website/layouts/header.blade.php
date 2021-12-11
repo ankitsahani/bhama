@@ -27,8 +27,14 @@ $womenmegamenu = Helper::getWomenMegaMenu();
 							</div>
 							<div class="dropdn dropdn_wishlist">
 								@php 
-								$user_id = Auth::user()->id;
-								$totalwishlist=App\Wishlist::where(['status'=>1,'user_id'=>$user_id])->count();
+								$user_id = Auth::user();
+								
+								if(!empty($user_id))
+								   $totalwishlist=App\Wishlist::where(['status'=>1,'user_id'=>$user_id->id])->count();
+								else
+								    $totalwishlist=0;
+								
+								
 								@endphp
 								<a href="{{route('wishlist')}}" class="dropdn-link only-icon wishlist-link "> <i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">{{$totalwishlist}}</span> </a>
 							</div>
