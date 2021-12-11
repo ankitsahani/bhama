@@ -8,6 +8,7 @@ use App\Order;
 use Auth;
 use Str;
 use App\Invoice;
+use App\Cart;
 class RazorpayController extends Controller
 {
     //
@@ -28,6 +29,7 @@ class RazorpayController extends Controller
         
         $carts = \Cart::content();
         foreach($carts as $cart){
+           
             $invoice=new Invoice();
             $invoice->user_id=Auth::user()->id;
             $invoice->product_id=$cart->id;
@@ -37,6 +39,8 @@ class RazorpayController extends Controller
             $invoice->price=$cart->price;
             $invoice->qty=$cart->qty;
             $invoice->save();
+            \Cart::remove($cart->rowId);
+            Cart::where('user_id',Auth::user()->id)->where('cart_id',$cart->rowId)->delete();
         }
     }
 

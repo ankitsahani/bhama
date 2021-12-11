@@ -100,15 +100,16 @@
 <div class="dropdn-content minicart-drop" id="dropdnMinicart">
 	<div class="dropdn-content-block">
 		<div class="dropdn-close"><span class="js-dropdn-close">Close</span></div>
-		<div class="minicart-drop-content js-dropdn-content-scroll"> @php $cart=\Cart::content(); @endphp @foreach($cart as $carts)
+		<div class="minicart-drop-content js-dropdn-content-scroll"> @php $cart=\Cart::content(); @endphp
+			 @foreach($cart as $carts)
 			<div class="minicart-prd row">
 				<div class="minicart-prd-image image-hover-scale-circle col"> <a href="product.html"><img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$carts->options->image)}}" alt=""></a> </div>
 				<div class="minicart-prd-info col">
 					<h2 class="minicart-prd-name"><a href="#">{{$carts->name}}</a></h2>
 					<div class="minicart-prd-qty"><span class="minicart-prd-qty-label">Quantity:</span><span class="minicart-prd-qty-value">{{$carts->qty}}</span></div>
 					<div class="minicart-prd-price prd-price">
-						<div class="price-old">₹{{$carts->selling_price}}</div>
-						<div class="price-new">₹{{$carts->price}}</div>
+						<div class="price-old">${{$carts->options->selling_price}}</div>
+						<div class="price-new">${{$carts->price}}</div>
 					</div>
 				</div>
 				<input type="hidden" value="{{ $carts->rowId }}" name="update_id" id="update_id"> {{ csrf_field() }}
@@ -170,11 +171,12 @@ function removeCart()
 	dataType: "json",
 	success:function(data)
 	{
-		//console.log(data.cartData);
+		
 		jQuery(".update_cart").html(data.cartData);
 		$('.minicart-total').html(data.price);
 		$('.minicart-qty').html(data.count);
-		$("#message").text(data.message).css("color", "red").delay(5000).fadeOut();;
+		location.reload();
+		// $("#message").text(data.message).css("color", "red").delay(5000).fadeOut();;
 
 	}
 	});

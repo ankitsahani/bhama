@@ -9,8 +9,8 @@
 					<h2 class="minicart-prd-name"><a href="#">{{$carts->name}}</a></h2>
 					<div class="minicart-prd-qty"><span class="minicart-prd-qty-label">Quantity:</span><span class="minicart-prd-qty-value">{{$carts->qty}}</span></div>
 					<div class="minicart-prd-price prd-price">
-						<div class="price-old">₹{{$carts->selling_price}}</div>
-						<div class="price-new">₹{{$carts->price}}</div>
+						<div class="price-old">${{$carts->options->selling_price}}</div>
+						<div class="price-new">${{$carts->price}}</div>
 					</div>
 				</div>
 				<input type="hidden" value="{{ $carts->rowId }}" name="update_id" id="update_id"> {{ csrf_field() }}
@@ -60,25 +60,4 @@
 		</div>
 </div>
 
-    <script>
-function removeCart()
-{
-	var update_id=$('#update_id').val();
-	var _token = $('input[name="_token"]').val();
-	$.ajax({
-	url:"{{ route('remove.from.cart') }}",
-	method:"POST",
-	data:{update_id:update_id, _token:_token},
-	dataType: "json",
-	success:function(data)
-	{
-		//console.log(data.cartData);
-		jQuery(".update_cart").html(data.cartData);
-		$('.minicart-total').html(data.price);
-		$('.minicart-qty').html(data.count);
-		$("#message").text(data.message).css("color", "red").delay(5000).fadeOut();;
-
-	}
-	});
-}
-</script>
+   

@@ -43,6 +43,10 @@
                 
                 <th>Order Amount</th>
                 <th>Order Status</th>
+<<<<<<< HEAD
+               
+=======
+>>>>>>> 4569e9f1ce019d06b67b51b9f9a994cf2f167a94
                 <th>Actions</th>
                 </tr>
             </thead>
