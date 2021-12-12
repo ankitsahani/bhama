@@ -1,5 +1,6 @@
 @php
-$getPurchaseProduct = Helper::getPurchaseProduct();
+$getPurchaseProduct = Helper::getPurchaseProduct(); 
+
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,8 @@ $getPurchaseProduct = Helper::getPurchaseProduct();
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Bhama</title>
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('website_assets/images/skins/fashion/logo2x.webp')}}" />
 	<link href="{{asset('website_assets/css/vendor/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('website_assets/css/vendor/vendor.min.css')}}" rel="stylesheet">
@@ -257,7 +260,7 @@ $getPurchaseProduct = Helper::getPurchaseProduct();
 		</div>
 	</div>
 	<div class="footer-sticky">
-		<div class="payment-notification-wrap js-pn" data-visible-time="3000" data-hidden-time="3000" data-delay="500" data-from="Aberdeen,Bakersfield,Birmingham,Cambridge,Youngstown" data-products='[{"productname":"{{$getPurchaseProduct->product_name}}", "productlink":"{{url('/single-product/'.$getPurchaseProduct->id)}}","productimage":"{{asset('/images/backend_img/products/small/'.$getPurchaseProduct->image)}}"}]'>
+		<div class="payment-notification-wrap js-pn" data-visible-time="3000" data-hidden-time="3000" data-delay="500" data-from="Aberdeen,Bakersfield,Birmingham,Cambridge,Youngstown" data-products='[{"productname":"{{$getPurchaseProduct->product_name}}", "productlink":"{{url('/single-product/'.$getPurchaseProduct->id)}}","productimage":"{{asset('/images/backend_img/products/small/'.$getPurchaseProduct->image)}}","{{ \Carbon\Carbon::parse($getPurchaseProduct->created)->diffForhumans() }}"}]'>
 			<div class="payment-notification payment-notification--squared">
 				<div class="payment-notification-inside">
 					<div class="payment-notification-container">
@@ -266,14 +269,14 @@ $getPurchaseProduct = Helper::getPurchaseProduct();
 							<div class="payment-notification-content">
 								<div class="payment-notification-text">Someone purchased</div> <a href="{{url('/single-product/'.$getPurchaseProduct->id)}}" class="payment-notification-name js-pn-name js-pn-link">{{$getPurchaseProduct->product_name}}</a>
 								<div class="payment-notification-bottom">
-									<div class="payment-notification-when"><span class="js-pn-time">{{ \Carbon\Carbon::parse($getPurchaseProduct->ceated)->diffForhumans() }}<div>
-									<div class="payment-notification-from">from <span class="js-pn-from">Riverside</span></div>
+									<div class="payment-notification-when"><span>{{ \Carbon\Carbon::parse($getPurchaseProduct->created)->diffForhumans() }}<div>
+									
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="payment-notification-close"><i class="icon-close-bold"></i></div>
-					<div class="payment-notification-qw prd-hide-mobile js-prd-quickview" data-src="ajax/ajax-quickview.html"><i class="icon-eye"></i></div>
+					<div class="payment-notification-qw prd-hide-mobile js-prd-quickview" data-src="{{asset('website_assets/ajax/ajax-quickview.html')}}"><i class="icon-eye"></i></div>
 				</div>
 			</div>
 		</div>

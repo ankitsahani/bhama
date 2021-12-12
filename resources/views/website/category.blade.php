@@ -127,14 +127,7 @@
 					</ul>
 				</li>
 				@endforeach
-		<!-- 		<li><a href="category.html" title="T-Shirts" class="open">T-Shirts</a></li>
-				<li><a href="category.html" title="Medical" class="open">Medical</a></li>
-				<li><a href="category.html" title="FoodMarket" class="open">FoodMarket</a></li>
-				<li><a href="category.html" title="Bikes" class="open">Bikes&nbsp;<span>(12)</span></a></li>
-				<li><a href="category.html" title="Cosmetics" class="open">Cosmetics&nbsp;<span>(16)</span></a></li>
-				<li><a href="category.html" title="Fishing" class="open">Fishing&nbsp;<span>(20)</span></a></li>
-				<li><a href="category.html" title="Electronics" class="open">Electronics&nbsp;<span>(15)</span></a></li>
-				<li><a href="category.html" title="Games" class="open">Games&nbsp;<span>(14)</span></a></li> -->
+	
 			</ul>
 		</div>
 	</div>

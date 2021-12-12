@@ -143,6 +143,7 @@ Route::middleware([frontmiddleware::class])->group(function () {
     Route::match(['get','post'],'update-cart', 'Website\CartController@updateCart')->name('update.cart');
     Route::match(['get','post'],'apply-coupon', 'Website\CartController@ApplyCoupon')->name('apply.coupon');
     Route::match(['get','post'],'remove-from-cart','Website\CartController@removeCart')->name('remove.from.cart');
+    Route::match(['get','post'],'clear-cart','Website\CartController@clearCart')->name('clear.cart');
 
     Route::match(['get','post'],'order-history','Website\OrderController@orderHistory')->name('order-history');
     Route::match(['get','post'],'invoice-history','Website\OrderController@invoiceHistory')->name('invoice-history');
