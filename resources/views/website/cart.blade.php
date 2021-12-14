@@ -25,6 +25,7 @@
 								<div class="cart-table-prd-action">&nbsp;</div>
 							</div>
 						</div> 
+						@if(!empty($cart))
 						@foreach($cart as $carts)
 						
 						<div class="cart-table-prd">
@@ -50,8 +51,11 @@
 							</div>
 							<input type="hidden" value="{{ $carts->rowId }}" name="update_id" id="update_id"> {{ csrf_field() }}
 							<div class="cart-table-prd-action"> <a href="javascript:void(0);" onclick="return removeCart();" class="cart-table-prd-remove" data-tooltip="Remove Product"><i class="icon-recycle"></i></a> </div>
-						</div> @endforeach </div>
-					<div class="text-center mt-1"><a href="#" class="btn btn--grey">Clear All</a> </div>
+						</div> 
+						@endforeach 
+						@endif
+					</div>
+					<div class="text-center mt-1"><a href="{{route('clear.cart')}}" class="btn btn--grey">Clear All</a> </div>
 					<div class="d-none d-lg-block">
 						<div class="mt-4"></div>
 						<div class="holder">
@@ -144,10 +148,7 @@
 						</div>
 					</div>
 					<div class="card-total">
-					<!-- <div class="text-right">
-								<button onclick="return updateCart('{{ $carts->rowId }}');" class="btn btn--grey"><span>UPDATE CART</span><i class="icon-refresh"></i>
-								</button>
-							</div> -->
+					
 						<div class="row d-flex">
 							
 							<div class="col card-total-txt">Total</div>

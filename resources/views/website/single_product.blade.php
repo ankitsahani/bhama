@@ -1,5 +1,10 @@
 @extends('website.layouts.master')
 @section('page_content')
+<style>
+	.fade {
+    transition: opacity .15s linear;
+}
+</style>
 <div class="page-content">
 	<div class="holder breadcrumbs-wrap mt-0">
 		<div class="container">
@@ -385,11 +390,86 @@
 				<div style="float: left;" class="prd-rating justify-content-center p-1 m-1"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>{{$reviewcount}} @if($reviewcount<2)Review @else Reviews @endif</div>
 			</div>
 			<div class="col-10" style="float: right;">
-				<div class="p-1 m-1"> <button type="button" class="btn btn-dark" style="float: right;" data-toggle="modal" data-target=".bd-example-modal-xl">
-	Write a Review
-  </button> </div>
+				<div class="p-1 m-1"> 
+					<button type="button" class="btn btn-dark" style="float: right;" data-toggle="modal" data-target=".bd-example-modal-xl">Write a Review</button>
+				</div>
 			</div>
 		</div>
+<!-- Modal Box for write review section-->
+
+<div class="modal fade bd-example-modal-xl " tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+ 
+ <div class="modal-dialog modal-xl ">
+   <div class="modal-content bg-light">
+	 <div class="modal-body">
+		 <div class="card review-section">
+			 
+		 <div class="container">
+		 <div class="card mx-auto m-0" >
+						 
+					 <h2 class="text-center">Write Review</h2>
+						 <div class="card-body">
+							 <form action="{{route('add-review')}}" method="post" enctype="multipart/form-data">
+								 @csrf
+								 <div class="row ">
+								 <div class=" col-md-6">
+									 <div class="card mx-auto">
+										 <input type="hidden" name="product_id" value="{{$productDetails->id}}">
+										 <h2 class="text-center">Choose Stars</h2>
+										 <div class="custom-control custom-radio p-2 m-1">
+											 <input type="radio" id="customRadio1" name="customRadio" value="5" class="custom-control-input" checked>
+											 <label class="custom-control-label" for="customRadio1"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span>
+											 </label>
+										   </div>
+										   <div class="custom-control custom-radio p-2 m-1">
+											 <input type="radio" id="customRadio2" name="customRadio" value="4"  class="custom-control-input">
+											 <label class="custom-control-label" for="customRadio2"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i></span>
+											 </label>
+										   </div>
+										   <div class="custom-control custom-radio p-2 m-1">
+											 <input type="radio" id="customRadio3" name="customRadio" value="3" class="custom-control-input">
+											 <label class="custom-control-label" for="customRadio3"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+											 </label></div>
+										   <div class="custom-control custom-radio p-2 m-1">
+											 <input type="radio" value="2"  id="customRadio4" name="customRadio" class="custom-control-input">
+											 <label class="custom-control-label" for="customRadio4"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+											 </label>
+										   </div>
+										   <div class="custom-control custom-radio p-2 m-1">
+											 <input type="radio" value="1"  id="customRadio5" name="customRadio" class="custom-control-input">
+											 <label class="custom-control-label" for="customRadio5"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
+											 </label>
+										   </div>
+									 </div>
+								 </div>
+								 <div class="col-md-10 p-0 mx-auto">
+								 <div class="form-group">
+								   <label for="exampleInputEmail1">Review Title</label>
+								   <input type="text" name="review_title" class="form-control" placeholder="Review Title">   
+								 </div>
+								 <div class="form-group">
+									 <label for="exampleInputPassword1">Review</label>
+									 <input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Write Your Review here">
+								 </div>
+								 
+								 <div class="form-group">
+									 <label for="exampleInputPassword1">Upload Image</label>
+									 <input type="file" class="form-control" id="exampleInputPassword1" name="image" placeholder="">
+								 </div>
+								 <button type="submit" class="btn btn-primary">Submit</button>
+								 </div>
+								 </div>
+							   </form>
+						 </div>
+				 
+			 </div>
+		 </div>
+		 </div>
+	 </div>
+   </div>
+ </div>
+</div> 
+<!-- Modal Box end -->
 		<div class="row justify-content-center">
 			@foreach($review as $s)
 			<div class="card review-item">
@@ -431,84 +511,6 @@
 	</div>
 </div>
 
- <!-- Modal Box for write review section-->
-<div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
- 
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content bg-light">
-		<div class="modal-body">
-			<div class="card review-section">
-				
-			<div class="container">
-			<div class="card mx-auto m-0" >
-							
-						<h2 class="text-center">Write Review</h2>
-							<div class="card-body">
-								<form action="{{route('add-review')}}" method="post" enctype="multipart/form-data">
-									@csrf
-									<div class="row ">
-									<div class=" col-md-6">
-										<div class="card mx-auto">
-											<input type="hidden" name="product_id" value="{{$productDetails->id}}">
-											<h2 class="text-center">Choose Stars</h2>
-											<div class="custom-control custom-radio p-2 m-1">
-												<input type="radio" id="customRadio" name="customRadio" value="5" class="custom-control-input" checked>
-												<label class="custom-control-label" for="customRadio1"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></span>
-												</label>
-											  </div>
-											  <div class="custom-control custom-radio p-2 m-1">
-												<input type="radio" id="customRadio" name="customRadio" value="4"  class="custom-control-input">
-												<label class="custom-control-label" for="customRadio"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i></span>
-												</label>
-											  </div>
-											  <div class="custom-control custom-radio p-2 m-1">
-												<input type="radio" id="customRadio" name="customRadio" value="3" class="custom-control-input">
-												<label class="custom-control-label" for="customRadio3"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
-												</label></div>
-											  <div class="custom-control custom-radio p-2 m-1">
-												<input type="radio" value="2"  id="customRadio" name="customRadio" class="custom-control-input">
-												<label class="custom-control-label" for="customRadio"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
-												</label>
-											  </div>
-											  <div class="custom-control custom-radio p-2 m-1">
-												<input type="radio" value="1"  id="customRadio" name="customRadio" class="custom-control-input">
-												<label class="custom-control-label" for="customRadio5"><span class="prd-rating  "><i class="icon-star-fill fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i><i class="icon-star-fill"></i></span>
-												</label>
-											  </div>
-										</div>
-									</div>
-									<div class="col-md-10 p-0 mx-auto">
-									<div class="form-group">
-									  <label for="exampleInputEmail1">Review Title</label>
-									  <input type="text" name="review_title" class="form-control" placeholder="Review Title">   
-									</div>
-									<div class="form-group">
-										<label for="exampleInputPassword1">Review</label>
-										<input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Write Your Review here">
-									</div>
-									
-									<div class="form-group">
-										<label for="exampleInputPassword1">Upload Image</label>
-										<input type="file" class="form-control" id="exampleInputPassword1" name="image" placeholder="">
-									</div>
-									<button type="submit" class="btn btn-primary">Submit</button>
-									</div>
-									</div>
-								  </form>
-							</div>
-					
-				</div>
-			</div>
-			</div>
-		</div>
-		<!-- <div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  <button type="button" class="btn btn-primary">Save changes</button>
-		</div> -->
-	  </div>
-	</div>
-  </div> 
-		        <!-- Modal Box end -->
 @endsection
 <script>
 	function addToCart(id){

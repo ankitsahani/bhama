@@ -27,6 +27,8 @@ class CartController extends Controller
             'price' => $product->selling_price,
             'weight' => 550,
             'options' => ['image'=>$product->image,'selling_price'=>$product->price,'size' =>$request->size]]);
+           
+            
 
             $data['product_id']=$request->id;
             $data['user_id']=Auth::user()->id;
@@ -36,7 +38,19 @@ class CartController extends Controller
             $data['price']=$product->price;
             $data['size']=$request->size;
             $data['grand_total']=$request->qty*$product->selling_price;
-            Cart::create($data);
+           
+
+            $cart=\Cart::content();
+            foreach($cart as $row){
+                $cartData=Cart::where('cart_id',$row->rowId)->first();
+                if($cartData){
+                    Cart::where('cart_id',$row->rowId)->update(['qty'=>$request->qty+1]);
+                }else{
+                    Cart::create($data);
+                }
+            }
+
+
              $count=Cart::count();
              $priceTotal=\Cart::priceTotal();
              $cart = \Cart::content();
@@ -133,6 +147,10 @@ class CartController extends Controller
           
             return redirect()->back()->with('flash_message_success','Coupon Code is successfully applied.You are availing discount!');
        }
+    }
+    public function clearCart(Request $request){
+        \Cart::destroy();
+        return redirect()->back();
     }
    
 }
