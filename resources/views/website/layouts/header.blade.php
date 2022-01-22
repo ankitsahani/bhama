@@ -102,62 +102,48 @@ $categories = Helper::getCategory();
 						<div class="hdr-nav hide-mobile nav-holder justify-content-center px-4">
 							<ul class="mmenu mmenu-js">
 								<li class="mmenu-item--simple"><a href="#" class="active">Home</a>
-									
 								</li>
-								<li class="mmenu-item--simple"><a href="#">New Arrivals</a>
-									<div class="mmenu-submenu">
-										<ul class="submenu-list">
-											<li><a href="{{route('product.listing')}}">Product page</a>
-												<ul> </ul>
-											</li>
-											<li><a href="{{route('categories')}}">Category page</a>
-												<ul>
-                                                    @foreach($categories as $c)
-													<li><a href="{{$c->url}}">{{$c->Name}}</a></li>
-													@endforeach
-												</ul>
-											</li>
-											<li><a href="cart.html">Cart & Checkout</a>
-												<ul>
-													<li><a href="{{route('cart')}}">Cart Page</a></li>
-													<li><a href="cart-empty.html">Empty cart</a></li>
-													<li><a href="checkout.html">Checkout variant 1</a></li>
-													<li><a href="checkout-2.html">Checkout variant 2</a></li>
-													<li><a href="checkout-3.html">Checkout variant 3</a></li>
-												</ul>
-											</li>
-											<li><a href="account-create.html">Account</a>
-												<ul>
-													<li><a href="{{route('user-login')}}">Login</a></li>
-													<li><a href="{{route('user-register')}}">Create account</a></li>
-													<li><a href="account-details.html">Account details</a></li>
-													<li><a href="account-addresses.html">Account addresses</a></li>
-													<li><a href="account-history.html">Order History</a></li>
-													<li><a href="account-wishlist.html">Wishlist</a></li>
-												</ul>
-											</li>
-											<li><a href="blog.html">Blog</a>
-												<ul>
-													<li><a href="blog.html">Right sidebar</a></li>
-													<li><a href="blog-left-sidebar.html">Left sidebar</a></li>
-													<li><a href="blog-without-sidebar.html">No sidebar</a></li>
-													<li><a href="blog-sticky-sidebar.html">Sticky sidebar</a></li>
-													<li><a href="blog-grid.html">Grid</a></li>
-													<li><a href="blog-post.html">Blog post</a></li>
-												</ul>
-											</li>
-											<li><a href="gallery.html">Gallery</a></li>
-											<li><a href="faq.html">Faq</a></li>
-											<li><a href="{{route('about.us')}}">About Us</a></li>
-											<li><a href="{{route('contact.us')}}">Contact Us</a></li>
-											<li><a href="404.html">404 Page</a></li>
-											<li><a href="typography.html">Typography</a></li>
-											<li><a href="coming-soon.html" target="_blank">Coming soon</a></li>
-										</ul>
+								<li class="mmenu-item--mega"><a href="category.html">Bhama Couture</a>
+									<div class="mmenu-submenu mmenu-submenu--has-bottom">
+										<div class="mmenu-submenu-inside">
+											<div class="container">
+												<div class="mmenu-left width-25">
+													<div class="mmenu-bnr-wrap">
+														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="{{asset('website_assets/images/menu/mmenu-bnr-01.webp')}}" class="lazyload fade-up" alt=""></a>
+													</div>
+													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3>
+												</div>
+												<div class="mmenu-cols column-4">
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Dresses</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Jackets</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta Sets</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Lehenga Choli</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Mask</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Palazzo</span></a></li>
+															
+														</ul>
+													</div>
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Shirt</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Shrugs</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Tops</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Top</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Trousers</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">T-Shirts</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Tunics</span></a></li>
+														</ul>
+													</div>
+													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</li>
-								<li><a href="category.html">Accessories<span class="menu-label">SALE</span></a></li>
-								<li class="mmenu-item--mega"><a href="category.html">Men</a>
+								<li class="mmenu-item--mega"><a href="category.html">Bittu By Bhama</a>
 									<div class="mmenu-submenu mmenu-submenu--has-bottom">
 										<div class="mmenu-submenu-inside">
 											<div class="container">
@@ -166,7 +152,6 @@ $categories = Helper::getCategory();
 														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="{{asset('website_assets/images/menu/mmenu-bnr-01.webp')}}" class="lazyload fade-up" alt=""></a>
 													</div>
 													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3> </div>
-											    
 												<div class="mmenu-cols column-4">
 													@foreach($menmegamenu as $m)
 													<div class="mmenu-col">
@@ -189,7 +174,7 @@ $categories = Helper::getCategory();
 										</div>
 									</div>
 								</li>
-								<li class="mmenu-item--mega"><a href="category.html">Women</a>
+								<li class="mmenu-item--mega"><a href="category.html">Bitiya By Bhama</a>
 									<div class="mmenu-submenu mmenu-submenu--has-bottom">
 										<div class="mmenu-submenu-inside">
 											<div class="container">
@@ -198,6 +183,36 @@ $categories = Helper::getCategory();
 														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="images/menu/mmenu-bnr-02.webp" class="lazyload fade-up" alt=""></a>
 													</div>
 													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3> </div>
+													
+												<div class="mmenu-cols column-4">
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Clothing Set</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Dresses</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Frock</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Jackets</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Jumpsuit</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Saree</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Saree Blouse</span></a></li>
+															
+														</ul>
+													</div>
+												</div>
+												
+												<div class="mmenu-cols column-4">
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Lehenga Choli</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Shorts</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta Sets</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Lehenga Choli</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Skirts</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Tops</span></a></li>
+															
+														</ul>
+													</div>
+												</div>
 												<div class="mmenu-cols column-4">
 													
 												@foreach($womenmegamenu as $m)
@@ -216,6 +231,58 @@ $categories = Helper::getCategory();
 												@endforeach
 													
 													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>Bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="mmenu-item--mega"><a href="category.html">Love More</a>
+									<div class="mmenu-submenu mmenu-submenu--has-bottom">
+										<div class="mmenu-submenu-inside">
+											<div class="container">
+												<div class="mmenu-left width-25">
+													<div class="mmenu-bnr-wrap">
+														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="{{asset('website_assets/images/menu/mmenu-bnr-01.webp')}}" class="lazyload fade-up" alt=""></a>
+													</div>
+													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3>
+												</div>
+												<div class="mmenu-cols column-4">
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Dresses</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta Sets</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Shirt</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Tops</span></a></li>
+															
+														</ul>
+													</div>
+													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="mmenu-item--mega"><a href="category.html">Baawara By Bhama</a>
+									<div class="mmenu-submenu mmenu-submenu--has-bottom">
+										<div class="mmenu-submenu-inside">
+											<div class="container">
+												<div class="mmenu-left width-25">
+													<div class="mmenu-bnr-wrap">
+														<a href="#" class="image-hover-scale"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="{{asset('website_assets/images/menu/mmenu-bnr-01.webp')}}" class="lazyload fade-up" alt=""></a>
+													</div>
+													<h3 class="submenu-title"><a href="category.html">Pre-Collection<br>Spring-Summer 2021</a></h3>
+												</div>
+												<div class="mmenu-cols column-4">
+													<div class="mmenu-col">
+														<ul class="submenu-list">
+															<li><a href="category.html"><span class="submenu-link-txt">Jeans</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta</span></a></li>
+															<li><a href="category.html"><span class="submenu-link-txt">Kurta Sets</span></a></li>
+															
+														</ul>
+													</div>
+													<div class="mmenu-bottom justify-content-center"> <a href="#"><i class="icon-fox icon--lg"></i><b>bhamashop News</b><i class="icon-arrow-right"></i></a> </div>
 												</div>
 											</div>
 										</div>

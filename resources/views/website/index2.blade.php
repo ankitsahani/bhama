@@ -116,14 +116,7 @@
 								<div class="prd-img-area">
 									<a href="{{url('single-product/'.$row->id)}}" class="prd-img image-hover-scale image-container"> <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$row->image)}}" alt="Oversized Cotton Blouse" class="js-prd-img lazyload fade-up">
 										<div class="bhama-loader"></div>
-										<div class="prd-big-squared-labels">
-											<div class="label-new"><span>New</span></div>
-											<div class="label-sale"><span>-{{number_format((float)(($row->price-$row->selling_price)*100)/$row->price, 2, '.', '')}}% <span class="sale-text">Sale</span></span>
-												<div class="countdown-circle">
-													<div class="countdown js-countdown" data-countdown="2021/07/01"></div>
-												</div>
-											</div>
-										</div>
+										
 									</a>
 									<div class="prd-circle-labels">{{csrf_field()}}
 										@php 
@@ -151,16 +144,9 @@
 										</a> 
 									</div>
 									<ul class="list-options color-swatch">
-										@php 
-										$productImages=App\ProductsImage::where('product_id',$row->id)->take(2)->get();
-										@endphp
-										@foreach($productImages as $row1)
-										<li data-image="{{asset('/images/backend_img/products/small/'.$row1->image)}}" class="active">
-											<a href="#" class="js-color-toggle" data-toggle="tooltip{{$row->id}}" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$row1->image)}}" class="lazyload fade-up" alt="Color Name"></a>
-										</li>
-										@endforeach
-										<li data-image="{{asset('/images/backend_img/products/small/'.$row->image)}}">
-											<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{asset('/images/backend_img/products/small/'.$row->image)}}" class="lazyload fade-up" alt="Color Name"></a>
+									
+										<li data-image="{{$row->image_url}}">
+											<a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{$row->image_url}}" class="lazyload fade-up" alt="Color Name"></a>
 										</li>
 									
 									</ul>
@@ -172,7 +158,7 @@
 										</div>
 										<div class="prd-rating justify-content-center"><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i></div>
 										
-										<h2 class="prd-title"><a href="{{url('single-product/'.$row->id)}}">{{$row->product_name}}</a></h2>
+										<h2 class="prd-title"><a href="{{url('single-product/'.$row->id)}}">{{$row->name}}</a></h2>
 										<div class="prd-description"> Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante sed lacinia. </div>
 										<div class="prd-action">
 											<form action="#">
@@ -186,8 +172,8 @@
 											<div class="prd-hide-mobile"><a href="#" class="circle-label-qview js-prd-quickview" data-src="{{asset('website_assets/ajax/ajax-quickview.html')}}"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
 										</div>
 										<div class="prd-price">
-											<div class="price-old">₹ {{$row->price}}</div>
-											<div class="price-new">₹ {{$row->selling_price}}</div>
+											<div class="price-old">₹ {{$row->mrp}}</div>
+											<div class="price-new">₹ {{$row->mrp}}</div>
 										</div>
 										<div class="prd-action">
 											<div class="prd-action-left">
@@ -202,6 +188,7 @@
 						</div>
 					    @endforeach
 					</div>
+					{{$product->links()}}
 				</div>
 			</div>
 		</div>

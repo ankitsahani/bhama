@@ -63,22 +63,6 @@ class CartController extends Controller
                 ));
            
     }
-    public function removeCart(Request $request){
-        \Cart::remove($request->update_id);
-        Cart::where('cart_id',$request->update_id)->delete();
-        $cart = \Cart::content();
-        $returnHTml = view('website.ajax.cart_remove_result',compact('cart'))->render();
-       
-        $count=\Cart::count();
-        $priceTotal=\Cart::priceTotal();
-        echo json_encode(array(
-            'message'=>'Cart removed Successfully',
-            'cartData'=>$returnHTml,
-            
-            'count'=>$count,
-            'price'=> $priceTotal,
-        ));
-    }
     public function updateCart(Request $request){
         $cartData=\Cart::update($request->update_id, ['qty' => $request->quantity]);
         $cart = \Cart::content();
@@ -104,6 +88,28 @@ class CartController extends Controller
         //     'count'=>$count,
         //     'price'=> $priceTotal,
         // ));
+    }
+    public function removeCart(Request $request){
+        \Cart::remove($request->update_id);
+        Cart::where('cart_id',$request->update_id)->delete();
+        $cart = \Cart::content();
+        $returnHTml = view('website.ajax.cart_remove_result',compact('cart'))->render();
+       
+        $count=\Cart::count();
+        $priceTotal=\Cart::priceTotal();
+        echo json_encode(array(
+            'message'=>'Cart removed Successfully',
+            'cartData'=>$returnHTml,
+            
+            'count'=>$count,
+            'price'=> $priceTotal,
+        ));
+    }
+    public function clearCart(Request $request){
+
+        \Cart::destroy();
+        Cart::where('user_id',Auth::user()->id)->delete();
+        return redirect()->back();
     }
     public function ApplyCoupon(Request $request){
        
@@ -148,9 +154,6 @@ class CartController extends Controller
             return redirect()->back()->with('flash_message_success','Coupon Code is successfully applied.You are availing discount!');
        }
     }
-    public function clearCart(Request $request){
-        \Cart::destroy();
-        return redirect()->back();
-    }
+  
    
 }

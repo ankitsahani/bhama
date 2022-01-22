@@ -91,6 +91,7 @@ Route::get('/admin/delete-product/{id}', 'Admin\ProductsController@deleteProduct
 Route::get('/admin/delete-product-image/{id}','Admin\ProductsController@deleteProductImage');
 Route::get('/admin/delete-alt-image/{id}','Admin\ProductsController@deleteAltImage');
 
+Route::match(['get','post'],'/admin/import-product', 'Admin\ProductsController@import');
 //products attributes routes (Admin)
 Route::match(['get','post'],'/admin/add-attributes/{id}', 'Admin\ProductsController@addAttributes');
 Route::match(['get','post'],'/admin/edit-attributes/{id}', 'Admin\ProductsController@editAttributes');

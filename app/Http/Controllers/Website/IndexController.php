@@ -40,7 +40,7 @@ class IndexController extends Controller
         return view('website.index',compact('categories','menu1','menu2','menu3','menu4','menu5','gallery'));
     }
     public function productListing(){
-        $product=Product::all();
+        $product=Product::paginate(10);
         $banner=Banner::all();
         
         return view('website.index2',compact('product','banner'));

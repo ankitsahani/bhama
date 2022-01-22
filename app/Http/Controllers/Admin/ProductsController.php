@@ -17,6 +17,10 @@ use App\Country;
 use App\Order;
 use App\OrdersProduct;
 use App\DeliveryAddress;
+use App\Imports\ProductImport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ProductsController extends Controller
 {
@@ -654,7 +658,14 @@ class ProductsController extends Controller
            return view('orders.order_details')->with(compact('orderDetails'));
 
 }
+        public function import(Request $request) 
+        {
 
+            
+             Excel::import(new ProductImport,$request->file('file'));
+            
+            return back();
+        }
 
 
 }
